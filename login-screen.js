@@ -18,27 +18,41 @@ const loginScreen=already=>{
  "Seu espaço de aprendizagem está prontinho para você! Digite o mesmo e-mail que você informou na compra do Caderno do Estudante de Terapia Ocupacional.";
  return '<section class="auth-page" aria-labelledby="auth-title"><div class="auth-canvas" aria-hidden="true">'+
  '<span class="auth-scribble auth-scribble-a">✦</span><span class="auth-scribble auth-scribble-b">✳</span>'+
- '<span class="auth-scribble auth-scribble-c">✿</span><span class="auth-scribble auth-scribble-d">✧</span></div>'+
+ '<span class="auth-scribble auth-scribble-c">✿</span><span class="auth-scribble auth-scribble-d">✧</span>'+
+ '<span class="auth-scribble auth-scribble-e">♡</span><span class="auth-scribble auth-scribble-f">❀</span>'+
+ '<span class="auth-scribble auth-scribble-g">♥</span><span class="auth-scribble auth-scribble-h">✺</span>'+
+ '<span class="auth-scribble auth-scribble-i">✿</span><span class="auth-scribble auth-scribble-j">♡</span>'+
+ '<span class="auth-scribble auth-scribble-k">✧</span><span class="auth-scribble auth-scribble-l">❃</span>'+
+ '<span class="auth-blob auth-blob-a"></span><span class="auth-blob auth-blob-b"></span><span class="auth-blob auth-blob-c"></span>'+
+ '<span class="auth-cloud auth-cloud-a"></span><span class="auth-cloud auth-cloud-b"></span></div>'+
  '<div class="auth-layout"><div class="auth-inspiration">'+
  '<div class="auth-brand"><span class="auth-brand-mark">TO</span><span>CADERNO DO ESTUDANTE<br>TERAPIA OCUPACIONAL</span></div>'+
- '<span class="auth-kicker">SEU ESPAÇO ACADÊMICO</span>'+
+ '<span class="auth-kicker"><span aria-hidden="true">✿ </span> SEU ESPAÇO ACADÊMICO</span>'+
  '<h1>Seu próximo passo <em>começa aqui.</em></h1>'+
  '<p>Um caderno cheio de possibilidades para estudar, organizar suas ideias e construir sua trajetória com confiança.</p>'+
- '<div class="auth-notes" aria-hidden="true"><div class="auth-paper auth-paper-lav"><b>✿ Meu cantinho de estudos</b><span>Aprender no meu ritmo</span></div>'+
- '<div class="auth-paper auth-paper-mint"><b>✦ Organizar e conquistar</b><span>Uma etapa de cada vez</span></div>'+
- '<div class="auth-paper auth-paper-peach"><b>♡ Tudo em um só lugar</b><span>Do primeiro semestre à profissão</span></div></div></div>'+
- '<div class="auth-form-wrap"><div class="auth-form-card"><div class="auth-card-sticker" aria-hidden="true">✳</div>'+
+ '<div class="auth-notes" aria-hidden="true">'+
+ '<div class="auth-paper auth-paper-lav"><i class="auth-note-seal">✿</i><b>✿ Meu cantinho de estudos</b><span>Aprender no meu ritmo</span></div>'+
+ '<div class="auth-paper auth-paper-mint"><i class="auth-note-seal">♥</i><b>✦ Organizar e conquistar</b><span>Uma etapa de cada vez</span></div>'+
+ '<div class="auth-paper auth-paper-peach"><i class="auth-note-seal">❀</i><b>♡ Tudo em um só lugar</b><span>Do primeiro semestre à profissão</span></div>'+
+ '<div class="auth-paper auth-paper-sky"><i class="auth-note-seal">✾</i><b>❀ Criatividade e leveza</b><span>Um espaço bonito para aprender</span></div>'+
+ '</div><div class="auth-pencil-trail" aria-hidden="true"><span>♡</span> pequenos passos, grandes descobertas <span>✦</span></div></div>'+
+ '<div class="auth-form-wrap"><div class="auth-form-card"><div class="auth-top-washi" aria-hidden="true"></div>'+
+ '<div class="auth-card-heart auth-card-heart-a" aria-hidden="true">♡</div><div class="auth-card-heart auth-card-heart-b" aria-hidden="true">✿</div>'+
+ '<div class="auth-card-sticker-wrap" aria-hidden="true"><div class="auth-card-sticker">✳</div>'+
+ '<div class="auth-card-mini auth-card-mini-a">♡</div><div class="auth-card-mini auth-card-mini-b">✿</div>'+
+ '<div class="auth-card-mini auth-card-mini-c">✦</div></div>'+
  '<span class="auth-welcome">'+(already?"BOM TER VOCÊ DE VOLTA":"SEJA MUITO BEM-VINDO(A)")+'</span>'+
  '<h2 id="auth-title">'+(already?"Seu caderno espera por você!":"Que alegria ter você aqui!")+'</h2>'+
+ '<div class="auth-mini-confetti" aria-hidden="true"><span>♡</span><span>✿</span><span>✦</span><span>♥</span><span>❀</span></div>'+
  '<p class="auth-intro">'+escape(message)+'</p>'+
  '<form id="to-login-form" novalidate><label for="auth-email">E-mail utilizado na compra</label>'+
  '<div class="auth-input-wrap"><span aria-hidden="true">✉</span><input id="auth-email" name="email" type="text" inputmode="email" autocomplete="email" maxlength="254" spellcheck="false" autocapitalize="none" placeholder="Digite seu e-mail de compra" required aria-describedby="auth-email-hint auth-error"></div>'+
  '<p id="auth-email-hint" class="auth-help">Use o e-mail informado no momento da compra para acessar seu caderno.</p>'+
  '<p id="auth-error" class="auth-error" role="alert" aria-live="polite" hidden></p>'+
- '<button type="submit" class="auth-submit">Entrar no meu caderno <span aria-hidden="true">→</span></button>'+
+ '<button type="submit" class="auth-submit"><span class="auth-submit-label">Entrar no meu caderno</span> <span class="auth-submit-arrow" aria-hidden="true">→</span></button>'+
  '</form><p class="auth-reassurance"><span aria-hidden="true">✦</span> Simples, acolhedor e feito para acompanhar sua jornada.</p>'+
 
- '</div><div class="auth-after"><span aria-hidden="true">♡</span> A sua jornada merece um lugar especial.</div></div></div></section>';
+ '</div><div class="auth-after"><span aria-hidden="true">♡</span> A sua jornada merece um lugar especial. <span aria-hidden="true">✿</span></div></div></div></section>';
 };
 function show(){
  document.body.classList.add("login-locked");
