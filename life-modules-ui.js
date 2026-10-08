@@ -42,7 +42,7 @@ const e=(label,value,path,rows=3)=>'<label class="to-field">'+E(label)+'<textare
 const input=(label,val,action,id,index,key,type="text")=>'<label class="to-field">'+E(label)+'<input type="'+type+'" class="to-input" value="'+attr(val)+'" data-life-'+action+'="'+E(id)+'" data-index="'+index+'" data-key="'+E(key)+'"></label>';
 const btn=(label,action,id,idx=null,variant="")=>A.button(label,action,'data-mid="'+E(id)+'"'+(idx!==null?' data-index="'+idx+'"':""),variant);
 const select=(options,value,field,id,index)=>'<select class="to-filter" data-life-'+field+'="'+E(id)+'" data-index="'+index+'">'+options.map(x=>'<option value="'+E(x)+'" '+(value===x?"selected":"")+'>'+E(x)+'</option>').join("")+'</select>';
-const nav=(m)=>'<aside class="sidebar life-sidebar"><div class="sidebar-kicker">TERAPIA OCUPACIONAL · MEU CADERNO</div><div class="sidebar-title">'+E(m.name)+'</div><nav class="ws-nav isolated"><a href="#home">← Página inicial</a><a href="#explorar">▦ Todos os ambientes</a><span class="to-nav-label">ESTA ÁREA</span>'+list.filter(x=>x.category===m.category).map(x=>'<a href="'+url(x.id)+'" class="'+(x.id===m.id?"active":"")+'">'+E(x.name)+'</a>').join("")+'</nav></aside>';
+const nav=(m)=>'<aside class="sidebar life-sidebar"><div class="sidebar-kicker">TERAPIA OCUPACIONAL · CADERNO INDIVIDUAL</div><div class="sidebar-title">'+E(m.name)+'</div><nav class="ws-nav isolated"><span class="to-nav-label">ESTE MÓDULO</span><a class="active" href="'+url(m.id)+'">✦ '+E(m.name)+'</a><span class="to-nav-label">MEU ESPAÇO DE TRABALHO</span><button type="button" data-action="lifeJump" data-target="life-plan">✎ Plano e fundamentos</button><button type="button" data-action="lifeJump" data-target="life-deep">✦ Ateliê de aprofundamento</button><button type="button" data-action="lifeJump" data-target="life-views">▦ Quadros de organização</button><span class="to-nav-label">NAVEGAÇÃO EXTERNA</span><a href="#explorar">← Biblioteca completa</a><a href="#home">⌂ Página inicial</a></nav></aside>';
 const shell=(m,content)=>'<div class="page workspace '+journeyTheme(m.category)+'">'+nav(m)+'<div class="workspace-main">'+content+'</div></div>';
 const block=(title,caption,content)=>'<section class="to-section"><h2>'+E(title)+'</h2>'+(caption?'<p>'+E(caption)+'</p>':"")+content+'</section>';
 const grid=(items)=>'<div class="to-gallery life-gallery">'+items.join("")+'</div>';
@@ -116,12 +116,15 @@ const tabs='<div class="to-tabs life-tabs" aria-label="Formas de organizar este 
 const content='<div class="to-actions"><a class="to-btn" href="#explorar">← Biblioteca de ambientes</a>'+btn("Exportar meus dados","lifeExport",m.id)+btn("Imprimir","lifePrint",m.id)+'</div>'+
 A.hero(m.category.toUpperCase(),m.name,m.description,"Situação inicial exclusivamente didática. Os registros pessoais são salvos neste navegador; não insira dados de pacientes e não trate exemplos como fatos pesquisados.")+
 '<div class="to-meta"><span class="to-pill">Ambiente de Terapia Ocupacional</span><span class="to-pill">Visualizações editáveis</span><span class="to-pill">Conteúdo específico</span></div>'+
-overview(m,v)+
-block("Meu modo de organização","Escolha galeria, Kanban, matriz, etapas, leitura, agenda, tabela ou checklist. Todas as visualizações editam os mesmos registros deste módulo.",tabs+view(m,v))+
+'<div id="life-plan" class="life-anchor">'+overview(m,v)+'</div>'+
+'<div id="life-deep" class="life-anchor">'+(window.TO_LIFE_DEEP?window.TO_LIFE_DEEP.render(m):"")+'</div>'+
+'<div id="life-views" class="life-anchor">'+
+block("Meu modo de organização","Escolha galeria, Kanban, matriz, etapas, leitura, agenda, tabela ou checklist. Todas as visualizações editam os mesmos registros deste módulo.",tabs+view(m,v))+'</div>'+
 '<details class="to-disclosure life-references" open><summary>Referenciais a verificar e integridade dos registros</summary><p>'+E(m.reference)+'</p><p>Consulte edições vigentes e os documentos originais antes de fazer citações. Os exemplos são cenários de estudo e não resultados empíricos, condutas para pacientes ou exigências oficiais do curso.</p></details>';
 A.main(shell(m,content));
 }
 function go(action,fn){A.onAction(action,b=>{const m=list.find(x=>x.id===b.dataset.mid);if(m){const v=data(m);fn(v,b,m);A.save();A.render(true)}})}
+A.onAction("lifeJump",b=>{const target=document.getElementById(b.dataset.target);if(target&&typeof target.scrollIntoView==="function")target.scrollIntoView({behavior:"smooth",block:"start"});});
 go("lifeView",(v,b)=>{if(modes.some(x=>x[0]===b.dataset.mode))v.view=b.dataset.mode});
 go("lifeAddTask",(v)=>v.tasks.push({id:stamp(),title:"Nova atividade de "+v.view,status:"A fazer",owner:"Estudante",due:"",note:"Descreva o objetivo, responsabilidades e materiais."}));
 go("lifeRemoveTask",(v,b)=>v.tasks.splice(Number(b.dataset.index),1));
