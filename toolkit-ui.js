@@ -6,12 +6,34 @@ const all=(area)=>area==="tcc"?window.TO_TCC_TOOLS:window.TO_RESEARCH_TOOLS;
 const route=(area,id)=>"#ferramenta-"+area+"/"+id;
 const ids={tcc:"Meu TCC",pesquisa:"Pesquisa Acadêmica"};
 S.academicTools=S.academicTools||{};
+const guidance=tool=>{
+ const cat=(tool.category||"").toLocaleLowerCase("pt-BR");
+ if(/ética|integridade|orientação|documentação/.test(cat))return "Referenciais a conferir: normas aplicáveis do CNS/CEP, COFFITO e regulamentação institucional; não inserir dados de pacientes.";
+ if(/literatura|fundamentação|revisão|bibliográfica|evidência/.test(cat))return "Fontes para busca e conferência: JBI Manual for Evidence Synthesis, periódicos de Terapia Ocupacional e referencial OTPF-4.";
+ if(/ocupação|tecnologia|social|comunidade|contextos|aplicação/.test(cat))return "Referenciais para contextualizar: OTPF-4 da AOTA, CIF da OMS e fontes específicas da população estudada.";
+ if(/método|pesquisa|quantitativo|qualitativo|projeto/.test(cat))return "Verificar coerência entre pergunta e desenho, diretrizes metodológicas pertinentes (JBI, PRISMA, COREQ ou STROBE, conforme caso).";
+ return "Consultar diretrizes do curso, materiais das disciplinas e documentos institucionais; registrar somente fontes e resultados verificados.";
+};
 const defaultItem=tool=>({
- title:tool.title,objective:"",context:"",evidence:"",reflection:"",next:"",owner:"",deadline:"",
+ title:tool.title,
+ objective:"EXEMPLO DIDÁTICO — "+tool.desc,
+ context:"Terapia Ocupacional · "+tool.category+". Situação demonstrativa: estudante desenvolve uma atividade acadêmica, compara abordagens e registra dúvidas sem dados de participantes reais.",
+ evidence:guidance(tool),
+ reflection:"Pergunta de aprofundamento: "+(tool.questions?.[0]||"Que conceitos devem orientar esta atividade?")+" Responder com leitura crítica e relação com participação ocupacional.",
+ next:"Etapas sugeridas: "+(tool.checks||[]).slice(0,3).join("; ")+".",
+ owner:"",deadline:"",
  checked:tool.checks.map(text=>({text,done:false})),
- rows:[{a:"",b:"",c:"",status:"A fazer"}],
- timeline:[{date:"",title:"",status:"A fazer"}],
- notes:"",status:"A fazer"
+ rows:[
+ {a:"Conceito-chave: "+tool.title,b:"EXEMPLO DIDÁTICO: "+tool.desc,c:(tool.questions?.[1]||"Fonte, contexto e critério a verificar."),status:"A fazer"},
+ {a:"Análise crítica e decisões",b:(tool.questions?.[2]||"Quais dados são necessários?"),c:guidance(tool),status:"A fazer"}
+ ],
+ timeline:[
+ {date:"",title:"Delimitar objetivo e critérios de "+tool.title.toLowerCase(),status:"A fazer"},
+ {date:"",title:"Reunir, conferir e interpretar fontes ou registros",status:"A fazer"},
+ {date:"",title:"Revisar produto e registrar limites",status:"A fazer"}
+ ],
+ notes:"EXEMPLO DIDÁTICO — Planejamento inicial. Personalize este espaço com os registros das aulas e orientações recebidas. Nunca apresente o exemplo como resultado real.",
+ status:"A fazer"
 });
 const item=tool=>{S.academicTools[tool.id]=S.academicTools[tool.id]||defaultItem(tool);return S.academicTools[tool.id]};
 const eattr=s=>E(s);
@@ -41,7 +63,7 @@ if(t.kind==="kanban"){
 if(t.kind==="checklist"){variant='<p>Use o checklist para conferir critérios específicos desta ferramenta, além do quadro de registros.</p>'}
 if(t.kind==="planner"||t.kind==="timeline"){variant='<p>Inclua datas reais do seu planejamento e acompanhe a situação de cada etapa. Nenhum prazo é presumido.</p>'}
 const guide='<div class="to-grid3">'+t.questions.map((q,i)=>'<div class="to-card"><small>PONTO DE ATENÇÃO</small><h3>'+E(["Finalidade","Registros","Encaminhamento"][i])+'</h3><p>'+E(q)+'</p></div>').join("")+'</div>';
-const content='<div class="to-actions"><a class="to-btn" href="#'+area+'">← Voltar para '+E(ids[area])+'</a>'+button("Copiar meu registro","copy",t.id)+button("Imprimir esta ferramenta","print",t.id)+button("Exportar dados (.json)","export",t.id)+'</div>'+title+saveInfo+'<section class="to-section"><h2>Guia de utilização</h2>'+guide+'</section><section class="to-section"><h2>Meu espaço de trabalho</h2><p>Edite e registre decisões com base em informações verificadas. As alterações são salvas automaticamente neste navegador.</p>'+fields+'</section><section class="to-section"><h2>'+E(t.kind==="matrix"?"Matriz de análise":t.kind==="kanban"?"Quadro de andamento":t.kind==="timeline"?"Registro de etapas":t.kind==="planner"?"Planejamento":t.kind==="checklist"?"Critérios registrados":"Estrutura de conteúdo")+'</h2>'+variant+table+'<div class="to-actions">'+button("+ Nova linha","addRow",t.id)+'</div></section><section class="to-section"><h2>Checklist de acompanhamento</h2>'+checklist+'</section><section class="to-section"><h2>Agenda e marcos</h2>'+timeline+'</section><p class="to-footer-note">O registro é armazenado localmente no seu dispositivo. Não inserir dados identificáveis de pacientes, participantes ou prontuários.</p>';
+const content='<div class="to-warning">Os campos iniciais são exemplos acadêmicos fictícios para orientar o preenchimento. Substitua-os por informações verificadas.</div><div class="to-actions"><a class="to-btn" href="#'+area+'">← Voltar para '+E(ids[area])+'</a>'+button("Copiar meu registro","copy",t.id)+button("Imprimir esta ferramenta","print",t.id)+button("Exportar dados (.json)","export",t.id)+'</div>'+title+saveInfo+'<section class="to-section"><h2>Guia de utilização</h2>'+guide+'</section><section class="to-section"><h2>Meu espaço de trabalho</h2><p>Edite e registre decisões com base em informações verificadas. As alterações são salvas automaticamente neste navegador.</p>'+fields+'</section><section class="to-section"><h2>'+E(t.kind==="matrix"?"Matriz de análise":t.kind==="kanban"?"Quadro de andamento":t.kind==="timeline"?"Registro de etapas":t.kind==="planner"?"Planejamento":t.kind==="checklist"?"Critérios registrados":"Estrutura de conteúdo")+'</h2>'+variant+table+'<div class="to-actions">'+button("+ Nova linha","addRow",t.id)+'</div></section><section class="to-section"><h2>Checklist de acompanhamento</h2>'+checklist+'</section><section class="to-section"><h2>Agenda e marcos</h2>'+timeline+'</section><p class="to-footer-note">O registro é armazenado localmente no seu dispositivo. Não inserir dados identificáveis de pacientes, participantes ou prontuários.</p>';
 A.main(A.shell(area,t.title,content,[{title:"← Biblioteca de "+ids[area],href:"#"+area}]));
 }
 function getTool(id){const t=[...window.TO_TCC_TOOLS,...window.TO_RESEARCH_TOOLS].find(x=>x.id===id);return t?item(t):null}
