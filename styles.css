@@ -677,3 +677,59 @@ body{font-size:14px;line-height:1.55}
 @media(max-width:1000px){.depth-week-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.to-depth-checks{grid-template-columns:1fr}.depth-week-grid{grid-template-columns:1fr 1fr}.depth-entry{padding:13px!important}}
 @media(max-width:480px){.depth-week-grid{grid-template-columns:1fr}.depth-entry .to-grid2{grid-template-columns:1fr}}
+
+
+/* Catálogo e workspaces autônomos da jornada acadêmica e profissional */
+.life-catalog-embed{margin-top:44px;padding-bottom:15px}
+.life-catalog{padding:34px 24px 60px}
+.life-catalog-embed .life-category,.life-catalog .life-category{margin:28px 0 36px}
+.life-catalog-embed .section-head,.life-catalog .section-head{margin-bottom:16px}
+.life-catalog-embed .section-head h2,.life-catalog .section-head h2{font-family:"Libre Baskerville",serif;font-size:21px;line-height:1.35}
+.life-catalog-embed>.to-flex>div>h2,.life-catalog>.to-flex>div>h2{font-family:"Libre Baskerville",serif;font-size:27px}
+.life-catalog-embed>.to-flex p,.life-catalog>.to-flex p{font-size:12px;color:#789088;line-height:1.7}
+.life-category{scroll-margin-top:80px}
+.life-category[hidden],.life-card[hidden]{display:none!important}
+.life-card{min-height:193px;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.life-card h3{font-size:15px}
+.life-card p{flex:1}
+.life-card footer{margin-top:18px}
+.life-card:nth-child(6n+1){background:linear-gradient(135deg,#fff,#f1f8f4)}
+.life-card:nth-child(6n+2){background:linear-gradient(135deg,#fff,#f8f1f7)}
+.life-card:nth-child(6n+3){background:linear-gradient(135deg,#fff,#f3f5ff)}
+.life-card:nth-child(6n+4){background:linear-gradient(135deg,#fff,#fff8e9)}
+.life-card:nth-child(6n+5){background:linear-gradient(135deg,#fff,#eaf7f8)}
+.life-sidebar .ws-nav{margin-top:20px}
+.life-sidebar .ws-nav a{font-size:11px}
+.life-sidebar .ws-nav a.active{background:#e8f2e9;color:#436c5d;font-weight:700}
+.life-tabs{padding:7px;border:1px solid #e2ebe5;border-radius:13px;background:#fbfdfb}
+.life-tabs button{font-size:11px}
+.life-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
+.life-reader-card,.life-display-card{display:grid;gap:10px;align-content:start}
+.life-reader-card h3,.life-display-card h3{font-size:15px}
+.life-reader-card textarea,.life-display-card textarea{width:100%}
+.life-reader-card label,.life-display-card label{font-size:11px}
+.life-kanban{grid-template-columns:repeat(4,minmax(205px,1fr))}
+.life-kanban .to-column{background:#f3f7f5}
+.life-kanban .to-column:nth-child(2){background:#f4f5fa}
+.life-kanban .to-column:nth-child(3){background:#fdf7ec}
+.life-kanban .to-column:nth-child(4){background:#ecf7ef}
+.life-kanban .to-task{display:grid;gap:8px}
+.life-kanban textarea{min-height:54px;line-height:1.5}
+.life-kanban .to-field{margin:0}
+.life-table textarea{min-width:180px}
+.life-timeline .to-grid2{margin:7px 0}
+.life-timeline article{padding:17px}
+.life-timeline .to-flex{margin:10px 0}
+.life-week{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.life-week-cell{border:1px solid #e3ece5;border-radius:15px;background:linear-gradient(145deg,#fff,#f8fbfa);padding:16px;display:grid;gap:11px}
+.life-week-cell strong{font-family:"Libre Baskerville",serif;font-size:15px;color:#587d71}
+.life-week-cell .to-field{margin:0}
+.life-check-row{padding:8px 0;border-bottom:1px solid #edf1ee}
+.life-check-row .to-check{display:flex;align-items:center;gap:8px;min-width:0}
+.life-check-row input.to-input{min-width:100px}
+.life-references{background:#f6f9f5!important}
+.life-catalog-embed #lifeSearch,.life-catalog #lifeSearch{max-width:600px}
+.workspace-main .to-table-wrap{margin-top:12px}
+@media(max-width:1100px){.life-kanban{grid-template-columns:repeat(4,210px)}.life-week{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.life-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.life-catalog{padding:20px 12px}.life-catalog-embed .section-head p,.life-catalog .section-head p{display:none}}
+@media(max-width:540px){.life-gallery,.life-week{grid-template-columns:1fr}.life-catalog-embed>.to-flex{align-items:start}.life-catalog-embed .section-head h2{font-size:17px}.life-card{min-height:0}.life-tabs{overflow-x:auto;flex-wrap:nowrap;white-space:nowrap}}
