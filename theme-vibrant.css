@@ -173,7 +173,6 @@ input:focus-visible,select:focus-visible,summary:focus-visible{
  color:var(--accent-deep);font-size:10px;font-weight:800;
 }
 /* Cada módulo possui seu próprio tema ao entrar */
-.workspace{--accent:var(--accent,#5846e7)}
 .workspace .sidebar{
  border:1px solid var(--accent-border,#d0d5f3);
  background:linear-gradient(150deg,#fff 38%,var(--accent-soft,#f2f1ff));
