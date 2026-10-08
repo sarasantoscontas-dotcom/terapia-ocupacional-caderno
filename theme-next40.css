@@ -283,3 +283,36 @@
 }
 @media(prefers-reduced-motion:reduce){.new40-card,.new40-paper,.new40-workspace .to-btn{animation:none!important;transition:none!important;transform:none!important}.new40-card:hover,.new40-paper:hover{transform:none!important}}
 @media print{.new40-sidebar,.new40-workspace-tools,.new40-tabs,.new40-collection-hero input{display:none!important}.new40-workspace{display:block}.new40-card,.new40-paper,.new40-section{transform:none!important;box-shadow:none!important}.new40-module-hero{box-shadow:none!important}}
+
+
+/* Calculadoras e inventário: ferramentas próprias dos módulos correspondentes */
+.new40-simulator{display:grid;gap:16px}
+.new40-simulator .new40-field input[type=number]{font-size:15px;font-weight:750;max-width:100%;background:#fff;min-height:40px}
+.new40-simulator-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.new40-simulator-results>div{
+ display:grid;align-content:center;gap:9px;min-height:118px;padding:18px;
+ border-radius:22px 13px 21px 12px;border:1.5px solid var(--accent-border);
+ background-image:
+ radial-gradient(circle at 10px 10px,color-mix(in srgb,var(--accent) 13%,transparent) 1.3px,transparent 2px),
+ linear-gradient(125deg,var(--accent-soft),#fff);
+ background-size:23px 23px,auto;
+ box-shadow:7px 9px 0 color-mix(in srgb,var(--accent) 8%,transparent);
+}
+.new40-simulator-results>div:nth-child(2){background-image:linear-gradient(130deg,#fff4e7,#fff)}
+.new40-simulator-results>div:nth-child(3){background-image:linear-gradient(130deg,#edfcef,#fff)}
+.new40-simulator-results small{font-size:11px;color:#5d6580;font-weight:750}
+.new40-simulator-results strong{font-size:24px;color:var(--accent-deep);letter-spacing:-.04em}
+.new40-simulator-note{font-size:11px;color:#6b7790;line-height:1.65}
+.new40-stock-table{min-width:800px}
+.new40-stock-table th{background:var(--accent-soft);color:var(--accent-deep);font-size:11px}
+.new40-stock-table td{background:#fff}
+.new40-stock-table input{width:100%;min-width:95px;padding:10px;border:1px solid #dce4ee;border-radius:8px}
+.new40-stock-low,.new40-stock-ok{display:inline-block;padding:7px 10px;border-radius:999px;font-size:10px;font-weight:850;white-space:nowrap}
+.new40-stock-low{color:#9c3a39;background:#ffe3dc;border:1px solid #ffb7a5}
+.new40-stock-ok{color:#1a6c52;background:#e1faee;border:1px solid #acdec4}
+@media(max-width:760px){
+ .new40-simulator-results{grid-template-columns:1fr 1fr}
+ .new40-simulator-results>div:last-child{grid-column:1/-1}
+ .new40-simulator-results strong{font-size:20px}
+}
+@media(max-width:450px){.new40-simulator-results{grid-template-columns:1fr}.new40-simulator-results>div:last-child{grid-column:auto}}
