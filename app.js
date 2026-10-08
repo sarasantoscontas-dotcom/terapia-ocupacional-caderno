@@ -4,7 +4,7 @@
 const KEY="to-caderno-2026-v1";
 const defaults={
  completed:[],favorites:[],notes:{},flashLevels:{},flashIndex:{},refsFav:[],customRefs:[],
- views:{resumos:"galeria",periodo:"galeria",disciplina:"galeria",flashcards:"galeria",bibliografia:"galeria",semestres:"galeria",tcc:"painel",pesquisa:"painel"},
+ views:{resumos:"galeria",periodo:"galeria",disciplina:"galeria",flashcards:"galeria",bibliografia:"galeria",semestres:"galeria",periodsemester:"painel",tcc:"painel",pesquisa:"painel"},
  semesterCurrent:1,subjectData:{},semesterNotes:{},tasks:[],
  tcc:{title:"",question:"",justification:"",goal:"",method:"",keywords:"",supervisor:"",institution:"",deadline:"",chapters:{},tasks:[
  {id:"t1",name:"Delimitar tema e problema",stage:"A fazer",date:""},
