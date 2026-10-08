@@ -14,8 +14,8 @@ const isAllowed=()=>Boolean(registered()&&read(ACTIVE)==="1");
 const initialTitle=document.title;
 const loginScreen=already=>{
  const message=already?
- "Que bom ter você de volta! Entre com o mesmo e-mail do seu primeiro acesso neste navegador.":
- "Seu espaço de aprendizagem está prontinho para começar. Use o e-mail que você informou na compra.";
+ "Que bom ter você de volta! Para continuar, digite o mesmo e-mail que você informou na compra do Caderno do Estudante de Terapia Ocupacional.":
+ "Seu espaço de aprendizagem está prontinho para você! Digite o mesmo e-mail que você informou na compra do Caderno do Estudante de Terapia Ocupacional.";
  return '<section class="auth-page" aria-labelledby="auth-title"><div class="auth-canvas" aria-hidden="true">'+
  '<span class="auth-scribble auth-scribble-a">✦</span><span class="auth-scribble auth-scribble-b">✳</span>'+
  '<span class="auth-scribble auth-scribble-c">✿</span><span class="auth-scribble auth-scribble-d">✧</span></div>'+
@@ -33,13 +33,11 @@ const loginScreen=already=>{
  '<p class="auth-intro">'+escape(message)+'</p>'+
  '<form id="to-login-form" novalidate><label for="auth-email">E-mail utilizado na compra</label>'+
  '<div class="auth-input-wrap"><span aria-hidden="true">✉</span><input id="auth-email" name="email" type="text" inputmode="email" autocomplete="email" maxlength="254" spellcheck="false" autocapitalize="none" placeholder="Digite seu e-mail de compra" required aria-describedby="auth-email-hint auth-error"></div>'+
- '<p id="auth-email-hint" class="auth-help">'+(already?
- "Use o e-mail cadastrado no seu primeiro acesso neste navegador.":
- "No primeiro acesso, o e-mail digitado ficará associado a este navegador, mesmo se houver alguma letra diferente.")+'</p>'+
+ '<p id="auth-email-hint" class="auth-help">Use o e-mail informado no momento da compra para acessar seu caderno.</p>'+
  '<p id="auth-error" class="auth-error" role="alert" aria-live="polite" hidden></p>'+
  '<button type="submit" class="auth-submit">Entrar no meu caderno <span aria-hidden="true">→</span></button>'+
  '</form><p class="auth-reassurance"><span aria-hidden="true">✦</span> Simples, acolhedor e feito para acompanhar sua jornada.</p>'+
- '<p class="auth-footnote">Este acesso é lembrado somente neste navegador. Não há verificação automática da compra.</p>'+
+
  '</div><div class="auth-after"><span aria-hidden="true">♡</span> A sua jornada merece um lugar especial.</div></div></div></section>';
 };
 function show(){
@@ -64,15 +62,15 @@ function enter(value){
  if(!typed){error("Digite seu e-mail para abrir o seu caderno.");return false}
  const previous=registered();
  if(previous&&canonical(previous)!==typed){
- error("Este navegador já tem um e-mail de primeiro acesso. Digite o mesmo que você usou antes para continuar.");
+ error("Este e-mail é diferente do que você utilizou para entrar no caderno. Confira o e-mail informado na compra e tente novamente.");
  return false;
  }
  if(!previous&&!write(KEY,typed)){
- error("Não conseguimos guardar seu acesso neste navegador. Verifique se o armazenamento está permitido.");
+ error("Não foi possível concluir sua entrada agora. Tente novamente.");
  return false;
  }
  if(!write(ACTIVE,"1")){
- error("Não foi possível salvar sua entrada. Verifique as permissões do navegador e tente novamente.");
+ error("Não foi possível concluir sua entrada agora. Tente novamente.");
  return false;
  }
  decorate();
