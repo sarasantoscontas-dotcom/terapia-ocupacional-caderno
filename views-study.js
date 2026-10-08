@@ -7,24 +7,24 @@ const note='Distribuição curricular ilustrativa. Confira o PPC, a carga horár
 const totalDis=s=>s.subjects.length;
 const activeDeck=(n,d)=>window.TO_GET_DECK?window.TO_GET_DECK(n,d):d.topics;
 const totalTopics=s=>s.subjects.reduce((n,d)=>n+d.topics.length,0);
-const periodCards=()=>window.TO_SEMESTERS.map(s=>A.card(s.title,s.focus+" · "+totalDis(s)+" disciplinas · "+totalTopics(s)+" assuntos","#periodo/"+s.number,"PERÍODO "+String(s.number).padStart(2,"0"),"Explorar as disciplinas"));
+const periodCards=()=>window.TO_SEMESTERS.map(x=>A.card(x.title,x.focus,"#periodo/"+x.number,"PERCURSO ACADÊMICO","Explorar disciplinas e assuntos"));
 function resumos(){
 A.crumb(["Caderno","Resumos Prontos"]);
 const ss=window.TO_SEMESTERS;
 const body=A.views("resumos",[["galeria","▦ Galeria"],["tabela","☷ Tabela"],["trilha","→ Trilha de períodos"]]);
 let content;
-if(S.views.resumos==="tabela")content=A.table(["Semestre","Foco de estudo","Disciplinas","Assuntos","Progresso"],ss.map(s=>['<a href="#periodo/'+s.number+'">'+E(s.title)+'</a>',E(s.focus),String(totalDis(s)),String(totalTopics(s)),A.countRead(s.number)+"/"+totalTopics(s)]));
+if(S.views.resumos==="tabela")content=A.table(["Semestre","Área de estudo","Organização","Acessar"],ss.map(x=>['<a href="#periodo/'+x.number+'">'+E(x.title)+'</a>',E(x.focus),"Disciplinas, assuntos e resumos",'<a href="#periodo/'+x.number+'">Abrir →</a>']));
 else if(S.views.resumos==="trilha")content=A.trail(ss.map(s=>({title:s.title,desc:s.focus,link:"#periodo/"+s.number})));
 else content=A.gallery(periodCards());
-A.main(A.shell("resumos","Resumos Prontos",A.hero("BIBLIOTECA ACADÊMICA","Resumos por semestre","Explore a graduação na sequência semestre → disciplina → assunto → resumo. Cada texto contém conceitos, raciocínio aplicado, exemplo contextualizado e pergunta de revisão.",note)+A.stats([[ss.length,"Períodos"],[ss.reduce((n,s)=>n+s.subjects.length,0),"Disciplinas"],[A.all().length,"Resumos temáticos"],[A.countRead(),"Concluídos"]])+body+window.TO_DEPTH.summaryLibrary()+content));
+A.main(A.shell("resumos","Resumos Prontos",A.hero("BIBLIOTECA ACADÊMICA","Resumos por semestre","Explore a graduação na sequência semestre → disciplina → assunto → resumo. Cada texto contém conceitos, raciocínio aplicado, exemplo contextualizado e pergunta de revisão.",note)+body+window.TO_DEPTH.summaryLibrary()+content));
 }
 function periodo(parts){
 const s=A.sem(parts[1]);if(!s){location.hash="#resumos";return}
 A.crumb(["Caderno","Resumos",s.title]);const ss=s.subjects;
-const rows=ss.map((d,i)=>['<a href="#disciplina/'+s.number+'/'+d.id+'">'+E(d.title)+'</a>',d.topics.length+" assuntos",d.topics.filter(t=>S.completed.includes(t.id)).length+"/"+d.topics.length,'<a href="#disciplina/'+s.number+'/'+d.id+'">Abrir →</a>']);
+const rows=ss.map(d=>['<a href="#disciplina/'+s.number+'/'+d.id+'">'+E(d.title)+'</a>',E(d.topics.map(x=>x.title).join(" · ")),"Biblioteca de resumos e aplicações",'<a href="#disciplina/'+s.number+'/'+d.id+'">Abrir →</a>']);
 const v=A.views("periodo",[["galeria","▦ Galeria"],["tabela","☷ Tabela"],["trilha","→ Trilha"]]);
-const content=S.views.periodo==="tabela"?A.table(["Disciplina","Assuntos","Lidos","Acessar"],rows):S.views.periodo==="trilha"?A.trail(ss.map(d=>({title:d.title,desc:d.topics.map(t=>t.title).join(" · "),link:"#disciplina/"+s.number+"/"+d.id}))):A.gallery(ss.map((d,i)=>A.card(d.title,d.topics.map(t=>t.title).join(" • "),"#disciplina/"+s.number+"/"+d.id,s.title+" · "+d.topics.length+" assuntos","Abrir disciplina")));
-A.main(A.shell("resumos",s.title,link("← Todos os semestres","#resumos")+A.hero("PERÍODO "+String(s.number).padStart(2,"0"),s.title,s.focus+". Escolha uma disciplina e depois o assunto para abrir o conteúdo completo.",note)+A.stats([[ss.length,"Disciplinas"],[totalTopics(s),"Assuntos"],[A.countRead(s.number),"Estudados"],[totalTopics(s)-A.countRead(s.number),"A estudar"]])+v+content,ss.map(d=>({title:d.title,href:"#disciplina/"+s.number+"/"+d.id}))));
+const content=S.views.periodo==="tabela"?A.table(["Disciplina","Temas de estudo","Conteúdo","Acessar"],rows):S.views.periodo==="trilha"?A.trail(ss.map(d=>({title:d.title,desc:d.topics.map(t=>t.title).join(" · "),link:"#disciplina/"+s.number+"/"+d.id}))):A.gallery(ss.map((d,i)=>A.card(d.title,d.topics.map(t=>t.title).join(" • "),"#disciplina/"+s.number+"/"+d.id,s.title+" · FUNDAMENTAÇÃO E PRÁTICA","Abrir disciplina")));
+A.main(A.shell("resumos",s.title,link("← Todos os semestres","#resumos")+A.hero("PERÍODO "+String(s.number).padStart(2,"0"),s.title,s.focus+". Escolha uma disciplina e depois o assunto para abrir o conteúdo completo.",note)+v+content,ss.map(d=>({title:d.title,href:"#disciplina/"+s.number+"/"+d.id}))));
 }
 function disciplina(parts){
 const s=A.sem(parts[1]),d=A.discipline(parts[1],parts[2]);if(!s||!d){location.hash="#resumos";return}
