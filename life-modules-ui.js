@@ -7,6 +7,7 @@ const statuses=["A fazer","Em andamento","Revisão","Concluído"];
 const modes=[["galeria","▦ Galeria"],["kanban","▤ Kanban"],["matriz","▦ Matriz"],["etapas","→ Etapas"],["leitura","☷ Quadro de leitura"],["planejamento","▦ Planejamento"],["tabela","☷ Tabela"],["checklist","✓ Checklist"]];
 const url=id=>"#modulo/"+id;
 const journeyTheme=category=>"theme-journey-"+(Math.max(0,groups.findIndex(g=>g.name===category))+1);
+const journeySticker=category=>["✿","✳","✎","❋","✶","✺","✧","✦","❀"][Math.max(0,groups.findIndex(g=>g.name===category))];
 const attr=x=>E(x??"");
 const stamp=()=>Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,5);
 function seed(m){
@@ -46,7 +47,7 @@ const nav=(m)=>'<aside class="sidebar life-sidebar"><div class="sidebar-kicker">
 const shell=(m,content)=>'<div class="page workspace '+journeyTheme(m.category)+'">'+nav(m)+'<div class="workspace-main">'+content+'</div></div>';
 const block=(title,caption,content)=>'<section class="to-section"><h2>'+E(title)+'</h2>'+(caption?'<p>'+E(caption)+'</p>':"")+content+'</section>';
 const grid=(items)=>'<div class="to-gallery life-gallery">'+items.join("")+'</div>';
-const card=(m)=>'<a class="to-card life-card '+journeyTheme(m.category)+'" href="'+url(m.id)+'"><small>'+E(m.category)+' · '+m.view.toUpperCase()+'</small><h3>'+E(m.name)+'</h3><p>'+E(m.description)+'</p><footer><span>Abrir ambiente</span><b>↗</b></footer></a>';
+const card=(m)=>'<a class="to-card life-card '+journeyTheme(m.category)+'" href="'+url(m.id)+'"><span class="texture-sticker" aria-hidden="true">'+journeySticker(m.category)+'</span><small>'+E(m.category)+' · '+m.view.toUpperCase()+'</small><h3>'+E(m.name)+'</h3><p>'+E(m.description)+'</p><footer><span>Abrir ambiente</span><b>↗</b></footer></a>';
 function catalog(embedded=false){
 const blocks=groups.map(g=>{const members=list.filter(m=>m.category===g.name);return '<section class="life-category '+journeyTheme(g.name)+'" data-life-category="'+E(g.name.toLocaleLowerCase("pt-BR"))+'"><header class="section-head"><div><span>CADERNO DE TERAPIA OCUPACIONAL</span><h2>'+E(g.name)+'</h2></div><p>Ferramentas específicas desta área</p></header>'+grid(members.map(card))+'</section>'}).join("");
 return (embedded?'<section class="life-catalog-embed">':'<section class="page life-catalog">')+'<div class="to-flex" style="margin-bottom:18px"><div><span class="handwritten">minha jornada acadêmica e profissional</span><h2>Outros ambientes do Caderno</h2><p>Espaços de estudo, estágio, pesquisa, pós-graduação, carreira e projetos sociais organizados por área. Cada ambiente possui registros e visualizações próprias.</p></div>'+(embedded?'<a class="to-btn primary" href="#explorar">Ver biblioteca completa →</a>':'<a class="to-btn" href="#home">← Início</a>')+'</div>'+
