@@ -5,6 +5,7 @@ const A=window.TO_APP,S=A.state,E=A.escape;
 const link=(label,href,cls="")=>'<a class="to-btn '+cls+'" href="'+E(href)+'">'+E(label)+'</a>';
 const note='Distribuição curricular ilustrativa. Confira o PPC, a carga horária e o elenco de disciplinas da sua instituição.';
 const totalDis=s=>s.subjects.length;
+const activeDeck=(n,d)=>window.TO_GET_DECK?window.TO_GET_DECK(n,d):d.topics;
 const totalTopics=s=>s.subjects.reduce((n,d)=>n+d.topics.length,0);
 const periodCards=()=>window.TO_SEMESTERS.map(s=>A.card(s.title,s.focus+" · "+totalDis(s)+" disciplinas · "+totalTopics(s)+" assuntos","#periodo/"+s.number,"PERÍODO "+String(s.number).padStart(2,"0"),"Explorar as disciplinas"));
 function resumos(){
@@ -55,24 +56,24 @@ const n=Number(parts[1]),s=A.sem(n);
 A.crumb(["Caderno","Flashcards",s?s.title:"Todos os períodos"]);
 const start=A.hero("REVISÃO ATIVA","Flashcards por semestre",s?"Selecione uma disciplina para praticar recuperação ativa e marcar a dificuldade de cada questão.":"Escolha um período e depois uma disciplina. As respostas ficam ocultas até você tentar recordar.");
 if(!s){
-A.main(A.shell("flashcards","Flashcards",start+A.stats([[A.all().length,"Cartões temáticos"],[Object.values(S.flashLevels).filter(x=>x==="dominei").length,"Dominados"],[Object.values(S.flashLevels).filter(x=>x==="rever").length,"Para rever"],[window.TO_SEMESTERS.length,"Períodos"]])+A.gallery(window.TO_SEMESTERS.map(x=>A.card(x.title,x.focus,"#flashcards/"+x.number,x.subjects.length+" DISCIPLINAS","Escolher período")))));
+A.main(A.shell("flashcards","Flashcards",start+A.gallery(window.TO_SEMESTERS.map(x=>A.card(x.title,x.focus,"#flashcards/"+x.number,"ESTUDO POR DISCIPLINA","Escolher período")))));
 return}
-A.main(A.shell("flashcards",s.title,link("← Todos os períodos","#flashcards")+start+A.views("flashcards",[["galeria","▦ Galeria"],["tabela","☷ Tabela"]])+(S.views.flashcards==="tabela"?A.table(["Disciplina","Cartões","Abrir"],s.subjects.map(d=>['<a href="#deck/'+s.number+'/'+d.id+'">'+E(d.title)+'</a>',String(d.topics.length),'<a href="#deck/'+s.number+'/'+d.id+'">Revisar →</a>'])):A.gallery(s.subjects.map(d=>A.card(d.title,"Perguntas conceituais com respostas explicativas para revisar conteúdos desta disciplina.","#deck/"+s.number+"/"+d.id,d.topics.length+" CARTÕES","Iniciar revisão"))))));
+A.main(A.shell("flashcards",s.title,link("← Todos os períodos","#flashcards")+start+A.views("flashcards",[["galeria","▦ Galeria"],["tabela","☷ Tabela"]])+(S.views.flashcards==="tabela"?A.table(["Disciplina","Área de estudo","Abrir"],s.subjects.map(d=>['<a href="#deck/'+s.number+'/'+d.id+'">'+E(d.title)+'</a>',E(d.topics.map(t=>t.title).join(" · ")),'<a href="#deck/'+s.number+'/'+d.id+'">Revisar →</a>'])):A.gallery(s.subjects.map(d=>A.card(d.title,"Perguntas conceituais com respostas explicativas para revisar conteúdos desta disciplina.","#deck/"+s.number+"/"+d.id,"CARTÕES DE REVISÃO","Iniciar revisão"))))));
 }
 let reveal=false;
 function deck(parts){
 const s=A.sem(parts[1]),d=A.discipline(parts[1],parts[2]);if(!s||!d){location.hash="#flashcards";return}
 A.crumb(["Caderno","Flashcards",s.title,d.title]);
-const key=s.number+"/"+d.id;let index=Math.max(0,Math.min(Number(S.flashIndex[key]||0),d.topics.length-1));const t=d.topics[index];
-const done=d.topics.filter(x=>S.flashLevels[x.id]==="dominei").length;
-const card='<div class="to-flash-card"><small>QUESTÃO '+(index+1)+' DE '+d.topics.length+'</small><h2>'+E(t.q)+'</h2>'+(reveal?'<div class="to-answer"><small>RESPOSTA COMENTADA</small><p>'+E(t.a)+'</p><p class="to-compact">Relação com o conteúdo: '+E(t.concept)+'</p></div>':'<p class="to-muted">Tente responder antes de revelar.</p>')+'</div>';
+const key=s.number+"/"+d.id;const cards=activeDeck(s.number,d);let index=Math.max(0,Math.min(Number(S.flashIndex[key]||0),cards.length-1));const t=cards[index];
+const done=cards.filter(x=>S.flashLevels[x.id]==="dominei").length;
+const card='<div class="to-flash-card"><small>REVISÃO ATIVA · '+E(d.title)+'</small><h2>'+E(t.q)+'</h2>'+(reveal?'<div class="to-answer"><small>RESPOSTA COMENTADA</small><p>'+E(t.a)+'</p><p class="to-compact">Relação com o conteúdo: '+E(t.concept)+'</p></div>':'<p class="to-muted">Tente responder antes de revelar.</p>')+'</div>';
 const controls='<div class="to-actions" style="justify-content:center">'+A.button("← Anterior","deckPrev",'data-key="'+E(key)+'"')+A.button(reveal?"Ocultar resposta":"Revelar resposta","deckReveal",'',"primary")+A.button("Próximo →","deckNext",'data-key="'+E(key)+'"')+'</div>'+(reveal?'<div class="to-actions" style="justify-content:center">'+A.button("Preciso rever","deckRate",'data-level="rever" data-id="'+E(t.id)+'" data-key="'+E(key)+'"')+A.button("Difícil","deckRate",'data-level="dificil" data-id="'+E(t.id)+'" data-key="'+E(key)+'"')+A.button("Lembrei","deckRate",'data-level="lembrei" data-id="'+E(t.id)+'" data-key="'+E(key)+'"')+A.button("Dominei","deckRate",'data-level="dominei" data-id="'+E(t.id)+'" data-key="'+E(key)+'"',"primary")+'</div>':"");
-A.main(A.shell("flashcards",d.title,link("← "+s.title,"#flashcards/"+s.number)+A.hero("BARALHO · "+s.title,d.title,"Revise os conceitos da disciplina, mantenha sua resposta mental e só então consulte a explicação.")+A.stats([[d.topics.length,"Perguntas"],[done,"Dominadas"],[d.topics.length-done,"Em estudo"],[index+1,"Cartão atual"]])+'<div class="to-progress"><span style="width:'+(done/d.topics.length*100)+'%"></span></div>'+card+controls+'<div class="to-section"><h2>Resumo relacionado</h2><p>'+E(t.title)+' — '+E(t.concept)+'</p>'+link("Abrir resumo completo",A.hrefTopic(s.number,d.id,t.id))+'</div>'));
+A.main(A.shell("flashcards",d.title,link("← "+s.title,"#flashcards/"+s.number)+A.hero("BARALHO · "+s.title,d.title,"Revise os conceitos da disciplina, mantenha sua resposta mental e só então consulte a explicação.")+'<div class="to-progress"><span style="width:'+(done/cards.length*100)+'%"></span></div>'+card+controls+'<div class="to-section"><h2>Aprofundamento da revisão</h2><p>'+E(t.concept||t.a)+'</p>'+(t.extra?'':'<a class="to-btn" href="'+A.hrefTopic(s.number,d.id,t.id)+'">Abrir conteúdo do assunto</a>')+'</div>'));
 }
 A.onAction("deckReveal",()=>{reveal=!reveal;A.render(true)});
-A.onAction("deckNext",b=>{const [n,did]=b.dataset.key.split("/"),d=A.discipline(n,did);S.flashIndex[b.dataset.key]=(Number(S.flashIndex[b.dataset.key]||0)+1)%d.topics.length;reveal=false;A.save();A.render(true)});
-A.onAction("deckPrev",b=>{const [n,did]=b.dataset.key.split("/"),d=A.discipline(n,did);S.flashIndex[b.dataset.key]=(Number(S.flashIndex[b.dataset.key]||0)+d.topics.length-1)%d.topics.length;reveal=false;A.save();A.render(true)});
-A.onAction("deckRate",b=>{S.flashLevels[b.dataset.id]=b.dataset.level;const [n,did]=b.dataset.key.split("/"),d=A.discipline(n,did);S.flashIndex[b.dataset.key]=(Number(S.flashIndex[b.dataset.key]||0)+1)%d.topics.length;reveal=false;A.save();A.render(true)});
+A.onAction("deckNext",b=>{const [n,did]=b.dataset.key.split("/"),d=A.discipline(n,did);S.flashIndex[b.dataset.key]=(Number(S.flashIndex[b.dataset.key]||0)+1)%activeDeck(n,d).length;reveal=false;A.save();A.render(true)});
+A.onAction("deckPrev",b=>{const [n,did]=b.dataset.key.split("/"),d=A.discipline(n,did);S.flashIndex[b.dataset.key]=(Number(S.flashIndex[b.dataset.key]||0)+activeDeck(n,d).length-1)%activeDeck(n,d).length;reveal=false;A.save();A.render(true)});
+A.onAction("deckRate",b=>{S.flashLevels[b.dataset.id]=b.dataset.level;const [n,did]=b.dataset.key.split("/"),d=A.discipline(n,did);S.flashIndex[b.dataset.key]=(Number(S.flashIndex[b.dataset.key]||0)+1)%activeDeck(n,d).length;reveal=false;A.save();A.render(true)});
 let refSem="todos",refType="todos";
 function bibliografia(){
  A.crumb(["Caderno","Bibliografia"]);
