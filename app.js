@@ -64,6 +64,12 @@ main('<section class="page"><section class="home-hero"><span class="hero-wash wa
 const routes={home:home};
 function register(name,fn){routes[name]=fn}
 function render(preserve=false){
+if(!window.TO_LOGIN){
+ main('<section class="page"><div class="to-empty">O acesso do caderno não carregou. Atualize a página para tentar novamente.</div></section>');
+ return;
+}
+if(!window.TO_LOGIN.isAllowed()){window.TO_LOGIN.show();return}
+window.TO_LOGIN.decorate();
 const old=window.scrollY,parts=decodeURI((location.hash||"#home").replace(/^#/,"")).split("/").filter(Boolean);
 try{(routes[parts[0]]||home)(parts)}catch(error){console.error(error);main('<section class="page"><div class="to-empty">Ocorreu um erro ao abrir a página. <a href="#home">Voltar ao início</a>.</div></section>')}
 if(preserve)window.scrollTo({top:old,behavior:"instant"});else window.scrollTo({top:0,behavior:"instant"});
