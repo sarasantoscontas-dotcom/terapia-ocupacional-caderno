@@ -290,3 +290,33 @@ A infraestrutura é `HTML/CSS/JavaScript` puro e salva no navegador via o mecani
 - Três ferramentas especiais (simulador universitário, simulador de custos e inventário) aparecem apenas em seus módulos.
 - Os 54 ambientes antigos continuam renderizando sem mistura de links entre os ambientes irmãos; biblioteca conjunta apresenta **54 cartões antigos + 40 novos**.
 - Pendente: validação visual real em desktop e celular; garantia e tempo de publicação pelo host externo não foram verificados.
+
+
+## Tela de acesso simplificada por e-mail — 08/10/2026
+
+Foi adicionada uma **tela de entrada** com identidade visual própria, leve e positiva, contendo apenas o campo "E-mail utilizado na compra" e o botão "Entrar no meu caderno". Há um botão discreto **Sair** na barra superior após o acesso.
+
+### Comportamento solicitado
+
+- **Primeiro acesso neste navegador:** qualquer texto não vazio digitado no campo de e-mail é aceito, inclusive se estiver com letra trocada, omitida ou sem formato válido, pois a tela não consulta a compra ou servidor de autenticação. O texto é aparado e normalizado para minúsculas e salvo no armazenamento local.
+- **Acessos seguintes:** ao visitar novamente no mesmo navegador, o estudante entra automaticamente enquanto a sessão local está ativa. O primeiro e-mail permanece associado àquele navegador.
+- **Sair:** o estudante pode sair sem apagar o e-mail associado nem suas anotações. Para entrar novamente, deve digitar o mesmo e-mail registrado no primeiro acesso; a comparação ignora maiúsculas e espaços nas extremidades.
+- **E-mail diferente:** não substitui o primeiro e-mail e não abre o caderno quando a pessoa saiu.
+- **Navegação protegida na interface:** \`app.js\` não renderiza nenhuma rota enquanto o acesso local não está ativo. O hash de navegação pode permanecer inalterado durante a tela de entrada e a rota anterior abre após o acesso.
+
+### Implementação
+
+- \`login-screen.js\`: interface, formulários, mensagens positivas, registro e controle do acesso local.
+- \`login-screen.css\`: estilos exclusivos da tela de entrada, responsividade, foco visível, efeito scrapbook, contraste e preferência por movimento reduzido.
+- \`index.html\`: inclusão dos novos arquivos e do botão "Sair"; sem mudar os módulos.
+- \`app.js\`: checagem no início de \`render()\` antes de abrir a aplicação.
+
+**Chaves:** \`to-caderno-compra-email-v1\` (primeiro e-mail) e \`to-caderno-compra-active-v1\` (estado de entrada), ambas em \`localStorage\`, separadas do armazenamento de estudos. Não alterar a chave antiga \`to-caderno-2026-v1\`.
+
+### Limitações importantes
+
+**Este é um bloqueio visual local, não autenticação real nem verificação de compra.** Não consulta checkout, plataforma de pagamento ou lista de compradores; não protege conteúdo/código disponibilizado publicamente por hospedagem estática. Dados de \`localStorage\` podem ser alterados pelo usuário e desaparecem quando os dados do site são apagados. Acesso não é sincronizado entre dispositivos. Para autenticação comercial verificável seria necessária integração com backend/provedor de login e base de pedidos.
+
+### Testes específicos
+
+Validado em ambiente de JavaScript simulado: tela bloqueada na primeira visita; aceitação de e-mail com erro de digitação; manutenção do e-mail e entrada automática após recarga; botão Sair; rejeição de outro e-mail após sair; aceitação do e-mail original mesmo em maiúsculas; bloqueio de acesso a rota direta sem sessão ativa. Todos passaram sem exceções neste teste. Revisão visual em navegador real ainda é necessária.
