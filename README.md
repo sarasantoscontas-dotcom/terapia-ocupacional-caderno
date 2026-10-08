@@ -226,3 +226,26 @@ Os conteúdos prévios, resumos, flashcards, referências, ferramentas, rotas e 
 - Páginas de Resumos, Flashcards, Bibliografia, Meu TCC, Pesquisa, Semestres, além de páginas internas e ferramentas, renderizadas com os novos complementos, sem erros nas simulações.
 - A inspeção visual e testes E2E completos em desktop e celular reais continuam pendentes; também não foi verificada a publicação no serviço externo de hospedagem.
 
+
+
+## Camada scrapbook de texturas — V2 (08/10/2026)
+
+O arquivo **\`theme-textures-v2.css\`** é carregado ao final do \`index.html\`, depois de \`styles.css\`, \`theme-vibrant.css\` e \`theme-playful.css\`. É uma camada visual aditiva: não substitui dados, textos, telas de estudo, modelos de pesquisa, resumos, flashcards ou as funções dos seis módulos principais e 54 ambientes adicionais.
+
+### Elementos adicionados
+
+- Fundo global com textura de papel pontilhado, manchas cromáticas translúcidas e aparência editorial.
+- Cartões principais com textura de papel, bordas levemente irregulares, sombra elevada, fitas tipo washi e adesivos decorativos.
+- Nove texturas próprias das nove categorias: papel quadriculado, pontilhado, pautado, linhas diagonais, pontos espaçados, grade pautada, diagonais largas, confete pontilhado e anéis geométricos.
+- Selos visuais específicos por categoria (\`texture-sticker\`, \`aria-hidden="true"\`) no catálogo: apenas decoração, sem ação ou impacto de acessibilidade.
+- Páginas internas com texturas, cabeçalhos decorados, realces tipo marca-texto, botões com brilho no hover, molduras, marcadores de índice, papel pautado e tabelas coloridas.
+- Ateliês anteriores com post-its, fitas, matriz de evidências e checklists mantidos; recebem papel artesanal, carimbos e variação cromática adicional.
+- Responsividade, impressão sem sombras pesadas e respeito a \`prefers-reduced-motion\`.
+
+### Regras de preservação
+
+A navegação lateral de cada ambiente continua isolada e não lista outros módulos da mesma categoria. Apenas a marcação visual do catálogo foi complementada por um selo decorativo, sem mudar a identificação do módulo. Dados pessoais dos estudantes permanecem em armazenamento local do navegador.
+
+### Validação estrutural da V2
+
+Conferidos **54 ambientes**, individualmente, com renderização bem-sucedida, conteúdo específico e sem links para módulos irmãos dentro da sua página. O catálogo emite selos decorativos nos 54 cartões; as nove texturas estão presentes; regras CSS estão equilibradas sintaticamente. Inspeção real em diferentes navegadores/dispositivos e sincronização com hospedagem externa não foram verificadas.
