@@ -66,7 +66,7 @@ Em 8 de outubro de 2026 foram executadas validações de sintaxe e **390 testes 
 
 ## Publicação
 
-Os arquivos estão publicados no repositório GitHub na branch `main`. O repositório informa o endereço `https://terapia-ocupacional-caderno.vercel.app`, mas a disponibilidade e a atualização efetiva dessa hospedagem **não foram verificadas nesta entrega**. Não há autenticação ou armazenamento remoto implementados.
+Os arquivos do projeto são mantidos no repositório GitHub, branch `main`. A **URL oficial escolhida para a hospedagem é https://terapia-ocupacional-caderno-si41.vercel.app/**; o domínio antigo foi descartado pelo proprietário e não deve mais ser divulgado. O projeto tem uma tela de entrada local por e-mail; ela não valida pagamentos e não é autenticação remota. A publicação efetiva depende da integração e dos limites de builds da Vercel.
 
 
 ## Ampliação de ambientes independentes — Outubro de 2026
@@ -320,3 +320,18 @@ Foi adicionada uma **tela de entrada** com identidade visual própria, leve e po
 ### Testes específicos
 
 Validado em ambiente de JavaScript simulado: tela bloqueada na primeira visita; aceitação de e-mail com erro de digitação; manutenção do e-mail e entrada automática após recarga; botão Sair; rejeição de outro e-mail após sair; aceitação do e-mail original mesmo em maiúsculas; bloqueio de acesso a rota direta sem sessão ativa. Todos passaram sem exceções neste teste. Revisão visual em navegador real ainda é necessária.
+
+
+## Endereço oficial da Vercel e diagnóstico de publicação — 08/10/2026
+
+**Única URL oficial informada pelo proprietário:** https://terapia-ocupacional-caderno-si41.vercel.app/
+
+**Repositório fonte:** https://github.com/sarasantoscontas-dotcom/terapia-ocupacional-caderno, branch `main`.
+
+**Recursos do último pedido:** `login-screen.js`, `login-screen.css`, verificação de `window.TO_LOGIN.isAllowed()` em `app.js`, formulário e botão `Sair` em `index.html`. Esses arquivos continuam no repositório e devem ser publicados junto com todos os módulos já criados. Nenhuma duplicata de aplicação deve ser criada.
+
+**Diagnóstico:** os checks do GitHub mostraram `Vercel: failure` nos commits do login (inclusive `f25924ca02bd`), com URL de diagnóstico apontando para `build-rate-limit`. A causa exata e a duração do bloqueio precisam ser verificadas no painel da Vercel. As atualizações do GitHub não garantem que a produção esteja sincronizada enquanto o limite de deploy estiver ativo.
+
+**Recomendações de publicação, sem apagar nada:** no projeto Vercel que responde pelo domínio oficial, confirmar em **Settings → Git** a conexão ao repositório `sarasantoscontas-dotcom/terapia-ocupacional-caderno` e à branch `main`; em **Deployments**, verificar a falha do build e, após liberar o limite, promover/republicar o último commit da branch. Não criar um segundo projeto Vercel nem apontar para o domínio antigo.
+
+O URL de homepage exibido na página de detalhes do GitHub é uma propriedade separada do README/HTML; a alteração dessa propriedade pela interface do GitHub precisa ser feita em **Settings → General → Website** (ou no campo Website/About da página do repositório), pois a conexão do GitHub disponível nesta sessão não fornece ação para editar os metadados do repositório.
