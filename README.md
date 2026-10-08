@@ -198,3 +198,31 @@ Cores e gradientes agora aparecem em **capas, cartões, cabeçalhos, páginas in
 A associação de temas é feita em `app.js` para os módulos-base e em `life-modules-ui.js` para os ambientes por categoria. A atualização **não altera dados locais, conteúdo acadêmico, funcionalidades ou estrutura de rotas**.
 
 **Verificação estrutural da personalização:** renderização simulada sem erros nas seis páginas-base e nos 54 ambientes adicionais, conferência de todas as classes cromáticas e importação correta da nova folha de estilos. Ainda é recomendada a inspeção visual em desktop/celular e em navegador real após a publicação.
+
+## Ateliês isolados, aprofundamento específico e design lúdico — 08/10/2026
+
+### Isolamento real de navegação e dados
+
+Cada um dos 54 ambientes `#modulo/trajeto-G-N` agora mostra na barra lateral **apenas o módulo aberto**, atalhos internos para seu plano, ateliê e quadros e links para retornar à biblioteca/início. Antes, a barra lateral listava os módulos irmãos da mesma categoria; essa listagem foi eliminada. O conteúdo existente e os links da biblioteca principal permanecem intactos.
+
+Os espaços originais mantêm seus dados em `state.lifeModules[module.id]`. Os novos ateliês são guardados separadamente em `state.lifeDeep[module.id]`, de forma que um registro do módulo "Políticas Públicas e Defesa de Direitos" não aparece em "Reabilitação Neurológica Ocupacional" ou em outros ambientes. Os seis módulos-base recebem apenas complementos próprios em `state.coreDepth[module]`. Tudo continua salvo somente no navegador, sem nuvem nem compartilhamento entre dispositivos.
+
+### Ampliação de conteúdo e interatividade
+
+Novos arquivos:
+
+- `life-depth-data.js`: 54 perfis originais, um para cada módulo, com fundamento específico, situação fictícia e proposta de entrega, além de perguntas críticas.
+- `life-depth-ui.js`: 54 ateliês complementares independentes, cada um com **fundamentação, situação, produto, interpretação, bibliografia para verificar, feedback, pergunta, critérios de qualidade, mural de post-its coloridos, matriz de evidências, plano de execução, checklist e diário reflexivo**. Post-its, linhas de matriz e etapas de plano podem ser criados/excluídos; todo texto é editável.
+- `core-depth-ui.js`: ateliês de aprofundamento específicos para **Resumos, Flashcards, Bibliografia, Meu TCC, Pesquisa Acadêmica e Controle de Semestre**, cada um com campos exemplificados, cartões de notas editáveis, checklist e diário próprio.
+- `theme-playful.css`: nova camada visual sobre a paleta vibrante existente, com **textura de pontinhos e papel pautado**, cartões com leve inclinação e sombra flutuante, gradientes por área, adesivos e efeitos de interação. Respeita telas pequenas e preferência por redução de movimento.
+
+Os conteúdos prévios, resumos, flashcards, referências, ferramentas, rotas e dados já criados não foram excluídos. O material novo não representa evidência empírica nem documentos normativos verificados; cenários são explicitamente fictícios. A conferência acadêmica por profissional especializado continua necessária.
+
+### Verificação
+
+- Rotas de **54/54 ambientes** renderizadas no ambiente de teste simulado, com ausência de links para módulos irmãos na barra lateral.
+- Verificado o isolamento do módulo "Políticas Públicas e Defesa de Direitos" e a persistência independente de edição e inclusão de notas.
+- Os **seis ateliês-base** renderizam conteúdo próprio e isolado.
+- Páginas de Resumos, Flashcards, Bibliografia, Meu TCC, Pesquisa, Semestres, além de páginas internas e ferramentas, renderizadas com os novos complementos, sem erros nas simulações.
+- A inspeção visual e testes E2E completos em desktop e celular reais continuam pendentes; também não foi verificada a publicação no serviço externo de hospedagem.
+
