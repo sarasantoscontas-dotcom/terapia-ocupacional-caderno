@@ -6,6 +6,7 @@ S.lifeModules=S.lifeModules||{};
 const statuses=["A fazer","Em andamento","Revisão","Concluído"];
 const modes=[["galeria","▦ Galeria"],["kanban","▤ Kanban"],["matriz","▦ Matriz"],["etapas","→ Etapas"],["leitura","☷ Quadro de leitura"],["planejamento","▦ Planejamento"],["tabela","☷ Tabela"],["checklist","✓ Checklist"]];
 const url=id=>"#modulo/"+id;
+const journeyTheme=category=>"theme-journey-"+(Math.max(0,groups.findIndex(g=>g.name===category))+1);
 const attr=x=>E(x??"");
 const stamp=()=>Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,5);
 function seed(m){
@@ -42,12 +43,12 @@ const input=(label,val,action,id,index,key,type="text")=>'<label class="to-field
 const btn=(label,action,id,idx=null,variant="")=>A.button(label,action,'data-mid="'+E(id)+'"'+(idx!==null?' data-index="'+idx+'"':""),variant);
 const select=(options,value,field,id,index)=>'<select class="to-filter" data-life-'+field+'="'+E(id)+'" data-index="'+index+'">'+options.map(x=>'<option value="'+E(x)+'" '+(value===x?"selected":"")+'>'+E(x)+'</option>').join("")+'</select>';
 const nav=(m)=>'<aside class="sidebar life-sidebar"><div class="sidebar-kicker">TERAPIA OCUPACIONAL · MEU CADERNO</div><div class="sidebar-title">'+E(m.name)+'</div><nav class="ws-nav isolated"><a href="#home">← Página inicial</a><a href="#explorar">▦ Todos os ambientes</a><span class="to-nav-label">ESTA ÁREA</span>'+list.filter(x=>x.category===m.category).map(x=>'<a href="'+url(x.id)+'" class="'+(x.id===m.id?"active":"")+'">'+E(x.name)+'</a>').join("")+'</nav></aside>';
-const shell=(m,content)=>'<div class="page workspace">'+nav(m)+'<div class="workspace-main">'+content+'</div></div>';
+const shell=(m,content)=>'<div class="page workspace '+journeyTheme(m.category)+'">'+nav(m)+'<div class="workspace-main">'+content+'</div></div>';
 const block=(title,caption,content)=>'<section class="to-section"><h2>'+E(title)+'</h2>'+(caption?'<p>'+E(caption)+'</p>':"")+content+'</section>';
 const grid=(items)=>'<div class="to-gallery life-gallery">'+items.join("")+'</div>';
-const card=(m)=>'<a class="to-card life-card" href="'+url(m.id)+'"><small>'+E(m.category)+' · '+m.view.toUpperCase()+'</small><h3>'+E(m.name)+'</h3><p>'+E(m.description)+'</p><footer><span>Abrir ambiente</span><b>↗</b></footer></a>';
+const card=(m)=>'<a class="to-card life-card '+journeyTheme(m.category)+'" href="'+url(m.id)+'"><small>'+E(m.category)+' · '+m.view.toUpperCase()+'</small><h3>'+E(m.name)+'</h3><p>'+E(m.description)+'</p><footer><span>Abrir ambiente</span><b>↗</b></footer></a>';
 function catalog(embedded=false){
-const blocks=groups.map(g=>{const members=list.filter(m=>m.category===g.name);return '<section class="life-category" data-life-category="'+E(g.name.toLocaleLowerCase("pt-BR"))+'"><header class="section-head"><div><span>CADERNO DE TERAPIA OCUPACIONAL</span><h2>'+E(g.name)+'</h2></div><p>Ferramentas específicas desta área</p></header>'+grid(members.map(card))+'</section>'}).join("");
+const blocks=groups.map(g=>{const members=list.filter(m=>m.category===g.name);return '<section class="life-category '+journeyTheme(g.name)+'" data-life-category="'+E(g.name.toLocaleLowerCase("pt-BR"))+'"><header class="section-head"><div><span>CADERNO DE TERAPIA OCUPACIONAL</span><h2>'+E(g.name)+'</h2></div><p>Ferramentas específicas desta área</p></header>'+grid(members.map(card))+'</section>'}).join("");
 return (embedded?'<section class="life-catalog-embed">':'<section class="page life-catalog">')+'<div class="to-flex" style="margin-bottom:18px"><div><span class="handwritten">minha jornada acadêmica e profissional</span><h2>Outros ambientes do Caderno</h2><p>Espaços de estudo, estágio, pesquisa, pós-graduação, carreira e projetos sociais organizados por área. Cada ambiente possui registros e visualizações próprias.</p></div>'+(embedded?'<a class="to-btn primary" href="#explorar">Ver biblioteca completa →</a>':'<a class="to-btn" href="#home">← Início</a>')+'</div>'+
 '<div class="to-toolbar"><input id="lifeSearch" class="to-filter to-search" placeholder="Buscar estágio, pesquisa, doutorado, concurso..." aria-label="Buscar ambientes"></div><div class="life-category-list">'+blocks+'</div></section>';
 }
