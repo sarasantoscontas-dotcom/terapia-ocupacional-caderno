@@ -67,3 +67,110 @@ Em 8 de outubro de 2026 foram executadas validações de sintaxe e **390 testes 
 ## Publicação
 
 Os arquivos estão publicados no repositório GitHub na branch `main`. O repositório informa o endereço `https://terapia-ocupacional-caderno.vercel.app`, mas a disponibilidade e a atualização efetiva dessa hospedagem **não foram verificadas nesta entrega**. Não há autenticação ou armazenamento remoto implementados.
+
+
+## Ampliação de ambientes independentes — Outubro de 2026
+
+A biblioteca de trabalho foi ampliada com **54 ambientes adicionais**, acessíveis em `#explorar`, além dos seis módulos-base. As páginas estão agrupadas por trajetória acadêmica e profissional; **cada módulo tem rota própria `#modulo/trajeto-N-N`, dados e tarefas independentes**, com estado persistente no navegador.
+
+Em cada ambiente, há exemplos didáticos específicos de Terapia Ocupacional, objetivo, contexto, referenciais para verificar, análise crítica, planejamento, tarefas com responsável e data, registros de matriz, leituras, etapas, checklist, agenda semanal e opção de exportação individual de dados em JSON.
+
+Os oito modos de visualização disponíveis são **galeria, Kanban, matriz, etapas, quadro de leitura, planejamento, tabela e checklist**. Os modos reutilizam componentes acessíveis da aplicação, mas mantêm dados e exemplos específicos para cada finalidade.
+
+### Vida acadêmica e graduação
+
+- Mapa da Graduação
+- Projetos e Seminários
+- Notas, Avaliações e Feedback
+- Biblioteca de Aula
+- Plano de Estudos por Ocupações
+- Mapas Conceituais da Terapia Ocupacional
+
+### Avaliação e prática ocupacional
+
+- Perfil Ocupacional
+- Laboratório de Análise de Atividades
+- CIF e Participação
+- Rotinas de AVD e AIVD
+- Tecnologia Assistiva Aplicada
+- Auditoria de Acessibilidade
+
+### Estágio e supervisão
+
+- Diário de Campo de Estágio
+- Plano de Estágio Supervisionado
+- Matriz de Competências Clínicas
+- Reuniões de Supervisão
+- Observações de Ocupações
+- Relatório e Portfólio de Estágio
+
+### Pesquisa, revisão e divulgação
+
+- Banco de Questões Científicas
+- Protocolo de Revisão Científica
+- Fichamentos Avançados
+- Matriz de Evidências
+- Fluxo de Seleção da Literatura
+- Comunicação Científica Acessível
+
+### Pós-graduação e especialização
+
+- Seleção de Especialização
+- Plano da Especialização
+- Portfólio da Especialização
+- Prática Baseada em Evidências
+- Projeto de Melhoria de Serviço
+- Trilha de Educação Permanente
+
+### Mestrado, doutorado e docência
+
+- Pré-projeto de Mestrado
+- Revisão Teórica de Pós-graduação
+- Desenhos de Métodos Mistos
+- Estudo Piloto e Viabilidade
+- Preparação para Qualificação
+- Artigos, Publicações e Pesquisa Doutoral
+
+### Concursos, residências e provas
+
+- Painel de Editais e Inscrições
+- Cronograma de Preparação
+- Banco de Questões Autorais
+- Legislação de Saúde e TO
+- Simulados de Raciocínio Ocupacional
+- Entrevista e Prova de Títulos
+
+### Carreira e vida profissional
+
+- Mapa de Áreas de Atuação
+- Plano de Carreira em TO
+- Currículo Lattes e Portfólio
+- Processos Seletivos Profissionais
+- Rede de Contatos Profissionais
+- Ética, Gestão e Consultoria
+
+### Projetos, comunidade e direitos
+
+- Projeto de Inclusão Escolar
+- Saúde Mental Comunitária
+- Envelhecimento e Comunidade
+- Ergonomia e Trabalho Real
+- Reabilitação Neurológica Ocupacional
+- Políticas Públicas e Defesa de Direitos
+
+### Ajustes solicitados na experiência
+
+- **Resumos:** remover números totais e painéis quantitativos de períodos, disciplinas, resumos, temas ou estudados da biblioteca e das páginas de período. Os períodos continuam identificados ordinalmente porque isso faz parte da organização curricular.
+- **TCC:** deixar abertos por padrão todos os grupos do catálogo de ferramentas (orientação, literatura, métodos, escrita, defesa etc.) e todos os detalhes expansíveis quando a página do TCC é exibida.
+- **Página inicial:** manter os seis ambientes principais e exibir a nova biblioteca agrupada por categoria, com busca por texto e navegação direta.
+- **54 novos ambientes:** seções, passos, matriz e registros preenchidos com exemplos explicitamente fictícios, podendo ser editados, reorganizados e salvos por usuário no armazenamento local.
+
+### Qualidade acadêmica e limites
+
+A organização curricular é **modelo ilustrativo**, não representa o PPC de uma universidade determinada. O caderno não valida automaticamente referências, exigências legais, editais, cronogramas, protocolos ou habilitações clínicas. As descrições e orientações de TO são material didático; antes de comercializar, revisar os conteúdos e títulos bibliográficos por especialista e verificar edições e atualizações. Nenhum exemplo acadêmico equivale a caso clínico real nem substitui supervisão.
+
+Os registros são guardados em **localStorage**, sem contas, sincronização remota ou cópia de segurança automática. Não inserir dados pessoais de usuários de serviços de saúde, participantes de pesquisas ou pacientes.
+
+### Validação da ampliação
+
+Teste de sintaxe e renderização simulada em todos os módulos com seus oito modos de visualização, mais as páginas principais: **504 casos executados sem falhas**, incluindo a ausência de totalizadores na biblioteca inicial de Resumos e a abertura de todas as categorias TCC (7 grupos verificados na interface). Os testes simulados não substituem testes completos em navegadores reais, dispositivos móveis, acessibilidade e uso prolongado.
