@@ -32,6 +32,8 @@ section("Guia de integridade acadêmica","Recomendações importantes para o des
 }
 const addTask=section("Adicionar etapa personalizada","Uma etapa pode ser uma tarefa de leitura, reunião, redação ou entrega.",'<div class="to-grid2"><label class="to-field">Nome da etapa<input id="tccNewTask" placeholder="Ex.: revisar referências do capítulo 2"></label><label class="to-field">Prazo previsto<input type="date" id="tccNewDate"></label></div><div class="to-actions">'+A.button("+ Adicionar etapa","addTccTask",'',"primary")+'</div>');
 A.main(A.shell("tcc","Meu TCC",A.hero("ESPAÇO DE ESCRITA","Meu Trabalho de Conclusão de Curso","Temas investigáveis, projeto, capítulos, tarefas e cronograma, com editor e salvamento local.","Antes de produzir pesquisa com pessoas ou dados identificáveis, consulte seu orientador e os requisitos éticos aplicáveis.")+tabs+body+(S.views.tcc==='painel'?window.TO_DEPTH.tccStudio():'')+addTask+window.TO_TOOLKIT.library('tcc')+'<p class="to-footer-note">Esta ferramenta é um ambiente de organização e redação; não realiza submissão ao CEP nem valida automaticamente normas da ABNT.</p>',[{title:"Voltar ao TCC",href:"#tcc"}]));
+// No TCC todas as categorias, subseções e editores aparecem expandidos na abertura.
+document.querySelectorAll(".workspace-main details").forEach(node=>{node.open=true});
 }
 A.onAction("tccBoard",()=>{S.views.tcc="kanban";A.save();A.render(true)});
 A.onAction("useIdea",b=>{const item=window.TO_TCC_IDEAS[Number(b.dataset.index)];if(!item)return;S.tcc.title=item.title;S.tcc.question=item.question;S.tcc.method=item.approach;S.tcc.keywords=item.keywords;S.views.tcc="painel";A.save();A.render(true);A.toast("Ideia aplicada como rascunho editável.")});
