@@ -1,0 +1,56 @@
+/* Fontes institucionais verificadas e roteiros de pesquisa. Não há artigos, DOIs ou dados clínicos fabricados. */
+window.TO_SOURCES=[
+{id:"otpf",title:"Occupational Therapy Practice Framework: Domain and Process (4ª edição)",org:"American Occupational Therapy Association",year:"2020",type:"Referencial profissional",area:"Fundamentos e prática",url:"https://www.aota.org/practice/domain-and-process/framework",note:"Referencial para domínio da profissão, processo terapêutico ocupacional, ocupações, contextos e participação. O texto integral pode exigir assinatura ou compra.",semesters:[1,2,3,4,5,7,8]},
+{id:"cif",title:"Classificação Internacional de Funcionalidade, Incapacidade e Saúde — CIF",org:"Organização Mundial da Saúde",year:"2001, com atualizações",type:"Classificação internacional",area:"Funcionalidade",url:"https://icd.who.int/browse/releases/icf/pt",note:"Descreve funcionalidade considerando funções e estruturas corporais, atividade, participação e fatores ambientais.",semesters:[1,2,3,4,5,6,7]},
+{id:"wfot",title:"Minimum Standards for the Education of Occupational Therapists",org:"World Federation of Occupational Therapists",year:"2026",type:"Referencial educacional",area:"Formação e estágio",url:"https://wfot.org/education/wfot-education-standards",note:"Parâmetros internacionais de formação. Não substituem exigências curriculares brasileiras ou institucionais.",semesters:[1,6,7,8]},
+{id:"wfot-competencies",title:"Minimum Competencies of Occupational Therapists",org:"World Federation of Occupational Therapists",year:"2026",type:"Referencial educacional",area:"Formação e estágio",url:"https://wfot.org/resources/minimum-competencies-of-occupational-therapists",note:"Competências previstas para formação e prática responsável; verificar o documento original.",semesters:[6,7,8]},
+{id:"coffito",title:"Resolução COFFITO nº 425/2013 — Código de Ética e Deontologia da Terapia Ocupacional",org:"COFFITO",year:"2013",type:"Norma profissional",area:"Ética e legislação",url:"https://www.coffito.gov.br/nsite/?p=3188",note:"Fonte primária sobre deveres éticos do terapeuta ocupacional. Consultar alterações e regulamentação atual quando necessário.",semesters:[1,2,3,6,8]},
+{id:"sus",title:"Sistema Único de Saúde — princípios e organização",org:"Ministério da Saúde, Brasil",year:"Consulta institucional",type:"Política pública",area:"Saúde Coletiva",url:"https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/s/sus/sus",note:"Material institucional sobre universalização, integralidade e equidade.",semesters:[1,2,4,6,8]},
+{id:"omsmental",title:"Mental Health: informações e documentos",org:"Organização Mundial da Saúde",year:"Consulta institucional",type:"Portal temático",area:"Saúde Mental",url:"https://www.who.int/health-topics/mental-health",note:"Documentos públicos de saúde mental; analisar pertinência de cada publicação antes de utilizar em TCC.",semesters:[2,4,7]},
+{id:"pesquisa",title:"Resoluções e diretrizes de ética em pesquisa",org:"Conselho Nacional de Saúde, Brasil",year:"Normas vigentes a verificar",type:"Legislação de pesquisa",area:"Pesquisa e TCC",url:"https://www.gov.br/conselho-nacional-de-saude/pt-br/acesso-a-informacao/camaras-tecnicas-e-comissoes-backup/conep/legislacao/resolucoes",note:"Consulta de normas de ética em pesquisa, incluindo resoluções CNS 466/2012 e 510/2016 e suas atualizações.",semesters:[1,3,6,7,8]},
+{id:"cadbto",title:"Cadernos Brasileiros de Terapia Ocupacional",org:"Universidade Federal de São Carlos / SciELO",year:"Periódico científico",type:"Periódico",area:"Pesquisa em Terapia Ocupacional",url:"https://www.scielo.br/j/cadbto/",note:"Periódico científico de acesso aberto. Pesquisar artigos individualmente antes de citá-los.",semesters:[1,2,3,4,5,6,7,8]},
+{id:"pubmed",title:"PubMed — pesquisa bibliográfica em saúde",org:"National Library of Medicine (NIH)",year:"Base de dados",type:"Base de dados",area:"Pesquisa e TCC",url:"https://pubmed.ncbi.nlm.nih.gov/",note:"Base para localizar registros de artigos biomédicos. Ler estudo e verificar DOI, desenho e publicação.",semesters:[3,6,7,8]},
+{id:"bvs",title:"Biblioteca Virtual em Saúde — BVS",org:"BIREME / OPAS / OMS",year:"Base de dados",type:"Base de dados",area:"Pesquisa e TCC",url:"https://bvsalud.org/",note:"Busca em literatura científica e técnica regional. Conferir filtros, bases e versões completas.",semesters:[1,3,6,7,8]},
+{id:"scielo",title:"SciELO — coleção de periódicos científicos",org:"Scientific Electronic Library Online",year:"Biblioteca eletrônica",type:"Base de dados",area:"Pesquisa e TCC",url:"https://www.scielo.br/",note:"Acesso e consulta de periódicos científicos brasileiros e de outras coleções.",semesters:[1,3,6,7,8]}
+];
+window.TO_TCC_IDEAS=[
+{title:"Acessibilidade do brincar em espaços públicos",area:"Infância e participação",question:"Quais barreiras e facilitadores influenciam o brincar de crianças com deficiência em praças públicas?",approach:"Estudo qualitativo exploratório com observação e entrevistas, condicionado à aprovação ética quando cabível.",keywords:"brincar, participação, acessibilidade, infância"},
+{title:"Rotinas ocupacionais de universitários com deficiência",area:"Educação e acessibilidade",question:"Como estudantes com deficiência descrevem estratégias e barreiras de participação acadêmica?",approach:"Estudo qualitativo com entrevistas e análise temática.",keywords:"educação superior, inclusão, cotidiano, acessibilidade"},
+{title:"Equilíbrio ocupacional na rotina de cuidadores",area:"Família e cuidado",question:"Como cuidadores familiares percebem a distribuição de tempo entre cuidado, autocuidado e lazer?",approach:"Pesquisa qualitativa com diário de rotina e entrevistas.",keywords:"cuidadores, sobrecarga, rotina, ocupação"},
+{title:"Participação ocupacional de idosos em espaços culturais",area:"Gerontologia e comunidade",question:"Quais fatores favorecem participação de pessoas idosas em atividades culturais no território?",approach:"Estudo de campo descritivo com mapeamento de acessibilidade e entrevistas.",keywords:"envelhecimento, cultura, participação, território"},
+{title:"Tecnologia assistiva e escrita acadêmica",area:"Tecnologia assistiva",question:"Como estudantes usuários de tecnologia assistiva avaliam recursos para produzir atividades escritas?",approach:"Estudo misto descritivo com questionário e entrevistas.",keywords:"tecnologia assistiva, escrita, universidade, acessibilidade"},
+{title:"Organização do cotidiano de jovens em saúde mental",area:"Saúde Mental",question:"Como jovens em cuidado comunitário descrevem ocupações significativas e barreiras à participação?",approach:"Pesquisa qualitativa com entrevistas narrativas.",keywords:"saúde mental, juventude, participação, cotidiano"},
+{title:"Barreiras ao retorno ao trabalho após afastamento",area:"Trabalho e reabilitação",question:"Quais adaptações do ambiente são percebidas como facilitadoras do retorno ao trabalho?",approach:"Revisão de escopo com protocolo e estratégia de busca documentada.",keywords:"retorno ao trabalho, ergonomia, adaptação, participação"},
+{title:"Acessibilidade de bibliotecas universitárias",area:"Inclusão",question:"Quais barreiras arquitetônicas, comunicacionais e institucionais afetam o uso de bibliotecas?",approach:"Estudo descritivo de acessibilidade, observação e análise documental.",keywords:"biblioteca, acessibilidade, universidade, deficiência"},
+{title:"Ocupações significativas em cuidados paliativos",area:"Contexto hospitalar",question:"Como a literatura descreve intervenções voltadas a ocupações significativas em cuidados paliativos?",approach:"Revisão de escopo ou integrativa com critérios explícitos.",keywords:"cuidados paliativos, significado, participação, terapia ocupacional"},
+{title:"Adaptações escolares e participação",area:"Infância e escola",question:"Que estratégias favorecem participação de estudantes com deficiência nas atividades escolares?",approach:"Revisão integrativa com avaliação crítica das fontes.",keywords:"inclusão escolar, participação, adaptações, criança"},
+{title:"Mobilidade urbana e participação de pessoas com deficiência",area:"Território e direitos",question:"Como barreiras de transporte interferem na participação social e educacional?",approach:"Estudo qualitativo de experiências ou análise de políticas públicas.",keywords:"mobilidade, participação, transporte, acessibilidade"},
+{title:"Tecnologia digital na organização do cotidiano",area:"Cognição e ocupação",question:"Como aplicativos de organização são percebidos por adultos com dificuldades de planejamento cotidiano?",approach:"Estudo descritivo sobre aceitabilidade e usabilidade, sem alegações de eficácia causal.",keywords:"funções executivas, rotina, tecnologia, usabilidade"}
+];
+window.TO_RESEARCH_STAGES=[
+{title:"Delimitação do problema",description:"Definir população, ocupação ou fenômeno, contexto e pergunta; registrar justificativa e limites."},
+{title:"Mapeamento da literatura",description:"Escolher bases, descritores, sinônimos e operadores; executar busca piloto e documentar resultados."},
+{title:"Planejamento metodológico",description:"Escolher desenho coerente, critérios, instrumentos, plano de análise e considerações éticas."},
+{title:"Seleção e extração",description:"Registrar fontes consultadas, critérios de seleção, características de estudos e resultados relevantes."},
+{title:"Síntese e escrita",description:"Articular evidências e limitações, distinguir observação de interpretação e conferir cada citação."},
+{title:"Revisão final",description:"Revisar coerência da pergunta ao resultado, referências, normas institucionais e integridade acadêmica."}
+];
+window.TO_TCC_CHAPTERS=[
+{title:"Tema, recorte e problema",hint:"Qual fenômeno ocupacional, contexto, sujeitos e dificuldade científica justificam a investigação?"},
+{title:"Justificativa e relevância",hint:"Reunir evidências verificadas e implicações para participação, políticas, serviços ou teoria."},
+{title:"Objetivo geral e específicos",hint:"Objetivo geral investigável e específicos coerentes com dados e método."},
+{title:"Referencial teórico",hint:"Conceitos, modelos teóricos, literatura contrastante, definições operacionais e lacunas."},
+{title:"Metodologia",hint:"Desenho, cenário, fontes ou participantes, critérios, coleta, análise e limitações."},
+{title:"Aspectos éticos",hint:"Consentimento, confidencialidade, riscos, autorizações e necessidade de CEP quando aplicável."},
+{title:"Resultados",hint:"Exposição organizada dos achados, sem extrapolação, com tabelas ou excertos pertinentes."},
+{title:"Discussão",hint:"Dialogar criticamente com literatura real, reconhecendo inconsistências e limitações."},
+{title:"Conclusão e implicações",hint:"Responder à pergunta, delimitar alcance dos achados e sugerir pesquisa futura."},
+{title:"Referências e anexos",hint:"Confirmar cada documento efetivamente consultado, formato exigido e documentos pertinentes."}
+];
+window.TO_DEFAULT_SEM_TASKS=[
+["Rever introdução e objetivos das disciplinas","estudar","2026-10-12"],
+["Organizar fichamento do referencial de TO","fazer","2026-10-15"],
+["Revisar flashcards de anatomia e ocupação","revisar","2026-10-17"],
+["Planejar atividade de estudo de caso fictício","fazer","2026-10-20"],
+["Separar fontes para trabalho acadêmico","fazer","2026-10-23"]
+];
