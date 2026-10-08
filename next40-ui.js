@@ -127,6 +127,43 @@ function dashboard(m,d){return '<div class="new40-dashboard">'+
  '<article class="new40-brief"><span>ENTREGA DESSE MÓDULO</span><p>'+safe(d.deliverable)+'</p></article>'+
  '<article class="new40-brief"><span>ATENÇÃO PROFISSIONAL</span><p>'+safe(m.caution)+'</p></article>'+
  '</div>'+kanban(m,d);}
+function special(m,d){
+ if(m.id==="novo-1-1"||m.id==="novo-5-2"){
+  const university=m.id==="novo-1-1";
+  if(!d.simulator)d.simulator=university?{income:1600,rent:600,transport:220,food:330,materials:120,leisure:130}:{fixed:2200,indirect:400,units:50,variable:26};
+  const labels=university?[["income","Entradas previstas"],["rent","Moradia e contas"],["transport","Transporte acadêmico"],["food","Alimentação"],["materials","Materiais de estudo"],["leisure","Lazer e outras ocupações"]]:
+  [["fixed","Custos fixos do cenário"],["indirect","Administração e horas indiretas"],["units","Quantidade hipotética de serviços"],["variable","Custo variável por serviço"]];
+  const n=k=>Math.max(0,Number(d.simulator[k])||0);
+  const income=n("income"),expense=n("rent")+n("transport")+n("food")+n("materials")+n("leisure");
+  const units=n("units"),total=n("fixed")+n("indirect")+units*n("variable");
+  const money=v=>(Number.isFinite(v)?v:0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+  const fields=labels.map(([key,label])=>'<label class="new40-field"><span>'+safe(label)+'</span><input type="number" min="0" step="'+(key==="units"?"1":"0.01")+'" class="to-input" data-n40-fin="'+m.id+'" data-n40-fin-key="'+key+'" value="'+safe(d.simulator[key])+'"></label>').join("");
+  const result=university?
+   '<div class="new40-simulator-results"><div><small>Entradas (exemplo)</small><strong>'+money(income)+'</strong></div><div><small>Despesas estimadas</small><strong>'+money(expense)+'</strong></div><div><small>Saldo simulado</small><strong>'+money(income-expense)+'</strong></div></div>':
+   '<div class="new40-simulator-results"><div><small>Custo mensal modelado</small><strong>'+money(total)+'</strong></div><div><small>Volume hipotético</small><strong>'+units+' serviço(s)</strong></div><div><small>Custo por unidade (não é preço)</small><strong>'+(units>0?money(total/units):"Defina um volume")+'</strong></div></div>';
+  return section(university?"Simulador de orçamento universitário":"Simulador de custos do serviço",
+   university?"Exemplo editável de planejamento pessoal. Os valores apresentados são hipotéticos e não dados financeiros reais.":
+   "Modelo didático de custos: soma custos fixos, indiretos e variáveis; não estima automaticamente tributos, margem, remuneração ou preço recomendado.",
+   '<div class="new40-simulator"><div class="new40-field-grid">'+fields+'</div>'+result+
+   '<p class="new40-simulator-note">Valores exclusivamente ilustrativos. Atualize suas premissas; a simulação não substitui orçamento, contabilidade ou orientação especializada.</p></div>');
+ }
+ if(m.id==="novo-5-3"){
+  if(!Array.isArray(d.stock))d.stock=[
+   {item:"Prendedores didáticos",qty:14,minimum:8,unit:"unidades"},
+   {item:"Papéis coloridos",qty:6,minimum:10,unit:"pacotes"},
+   {item:"Conjunto de utensílios",qty:4,minimum:2,unit:"kits"}
+  ];
+  return section("Inventário de estoque e sinalização de reposição",
+    "Exercício com materiais fictícios e alertas calculados. Revise requisitos de segurança e política de compras do serviço.",
+    '<div class="to-table-wrap"><table class="to-table new40-stock-table"><thead><tr><th>Material</th><th>Quantidade</th><th>Estoque mínimo</th><th>Unidade</th><th>Situação</th><th></th></tr></thead><tbody>'+
+    d.stock.map((r,i)=>{
+      const alert=Math.max(0,Number(r.qty)||0)<Math.max(0,Number(r.minimum)||0);
+      const inp=(field,val,type="text")=>'<input type="'+type+'" class="to-input" '+(type==="number"?'min="0" step="1" ':'')+'data-n40-stock="'+m.id+'" data-n40-stock-index="'+i+'" data-n40-stock-key="'+field+'" value="'+safe(val)+'">';
+      return '<tr><td>'+inp("item",r.item)+'</td><td>'+inp("qty",r.qty,"number")+'</td><td>'+inp("minimum",r.minimum,"number")+'</td><td>'+inp("unit",r.unit)+'</td><td><span class="new40-stock-'+(alert?"low":"ok")+'">'+(alert?"Repor / conferir":"Acima do mínimo")+'</span></td><td>'+htmlBtn("×","new40DeleteStock",m,'data-n40-index="'+i+'"')+'</td></tr>';
+    }).join("")+'</tbody></table></div><div class="to-actions">'+htmlBtn("+ Novo item","new40AddStock",m)+'</div>');
+ }
+ return "";
+}
 function check(m,d){return section("Revisão, responsabilidades e diário",
  "Conferências do próprio módulo; exemplos não são dados clínicos nem substituem avaliação, orientação ou normas oficiais.",
  '<div class="new40-check-grid">'+d.checks.map((c,i)=>
@@ -149,11 +186,11 @@ function modulePage(parts){
  '<span class="new40-overline">'+safe(c.name)+'</span><h1>'+safe(m.name)+'</h1><p>'+safe(m.description)+'</p>'+
  '<div class="new40-hero-tags"><span>Ferramenta independente</span><span>Exemplos preenchidos</span><span>Registros editáveis</span></div></header>'+
  progress(d)+
- '<div class="new40-page-content">'+fields(m,d)+
+ '<div class="new40-page-content">'+fields(m,d)+special(m,d)+
  '<div class="new40-anchor" id="n40-work">'+section("Minha bancada de ferramentas",
  "Alterne entre painel, Kanban, matriz, cronograma e fichas. Cada visualização utiliza somente dados deste ambiente.",
  tabs+active)+'</div>'+check(m,d)+'</div>';
- A.main('<div class="page workspace new40-workspace new40-theme-'+safe(c.id)+'">'+nav(m)+'<main class="workspace-main">'+body+'</main></div>');
+ A.main('<div class="page workspace new40-workspace new40-theme-'+safe(c.id)+'">'+nav(m)+'<div class="workspace-main">'+body+'</div></div>');
 }
 const changeField=(e)=>{
  const d=e.target.dataset,m=list.find(x=>x.id===d.n40Id);if(!m)return;
@@ -178,6 +215,18 @@ action("new40AddRecord",(v,m)=>v.records.push({id:"record-"+Date.now(),aspect:"N
 action("new40DeleteRecord",(v,m,b)=>v.records.splice(Number(b.dataset.n40Index),1));
 action("new40AddNote",(v,m)=>v.notes.push({id:"note-"+Date.now(),title:"Minha ideia sobre "+m.name,body:"Registrar observação, fonte e próximo passo sem dados pessoais de terceiros.",color:"peach"}));
 action("new40DeleteNote",(v,m,b)=>v.notes.splice(Number(b.dataset.n40Index),1));
+action("new40AddStock",(v)=>{v.stock=v.stock||[];v.stock.push({item:"Novo material",qty:0,minimum:1,unit:"unidade"})});
+action("new40DeleteStock",(v,m,b)=>{if(Array.isArray(v.stock))v.stock.splice(Number(b.dataset.n40Index),1)});
+document.addEventListener("input",e=>{
+ const d=e.target.dataset;
+ if(d.n40Fin){const v=S.next40[d.n40Fin]?.simulator;if(v&&Object.prototype.hasOwnProperty.call(v,d.n40FinKey)){
+ v[d.n40FinKey]=Math.max(0,Number(e.target.value)||0);A.save();}}
+ if(d.n40Stock){const row=S.next40[d.n40Stock]?.stock?.[Number(d.n40StockIndex)];if(row&&Object.prototype.hasOwnProperty.call(row,d.n40StockKey)){
+ row[d.n40StockKey]=["qty","minimum"].includes(d.n40StockKey)?Math.max(0,Number(e.target.value)||0):e.target.value;A.save();}}
+});
+document.addEventListener("change",e=>{
+ if(e.target.dataset.n40Fin||e.target.dataset.n40Stock)A.render(true);
+});
 A.onAction("new40Jump",b=>{const node=document.getElementById(b.dataset.target);if(node&&node.scrollIntoView)node.scrollIntoView({behavior:"smooth",block:"start"})});
 A.onAction("new40Print",()=>{if(typeof window.print==="function")window.print()});
 A.onAction("new40Export",b=>{
