@@ -135,7 +135,7 @@ body=A.stats([[semSubjects(s).length,"Disciplinas"],[total(s),"Assuntos"],[A.cou
 section("Disciplinas do período","Abra cada cartão para editar notas, pesos, frequência e observações. Nenhuma nota é presumida.",A.gallery(semSubjects(s).map(d=>subjectCard(s,d))))+
 section("Personalizar minhas disciplinas","Adicione matérias da grade real da sua universidade sem alterar a biblioteca-modelo.",'<div class="to-toolbar"><input class="to-filter to-search" id="newCustomSubject" placeholder="Nome da nova disciplina">'+A.button("+ Adicionar disciplina","addCustomSubject",'data-sem="'+s.number+'"',"primary")+'</div>')+section("Entregas e atividades","Acompanhe prazos do semestre em formato de lista; alterne para Kanban ou calendário para outras visualizações.",A.table(["Tarefa","Prazo","Status","Ação"],tasks.map(t=>[E(t.title)+(t.sample?' <small>Exemplo</small>':''),E(t.date||"A definir"),E(t.status),A.button("Excluir","deleteSemTask",'data-id="'+E(t.id)+'"',"danger")]))+taskEntry)+section("Diário do semestre","Faça seu planejamento de aula, anote dificuldades, feedback de professores e metas.",editable("Notas gerais","semesterNotes."+s.number,S.semesterNotes[s.number]||"",7,"Plano semanal, dúvidas, datas importantes…"));
 }
-A.main(A.shell("semestres",s.title,sel+A.hero("MEU PERCURSO ACADÊMICO",s.title,s.focus+". Visualize matérias, organize tarefas e acompanhe sua evolução.",semNotice)+v+body));
+A.main(A.shell("semestres",s.title,sel+A.hero("MEU PERCURSO ACADÊMICO",s.title,s.focus+". Visualize matérias, organize tarefas e acompanhe sua evolução.",semNotice)+v+body+window.TO_SEMESTER_PLUS.render(s)));
 }
 A.onAction("addCustomSubject",b=>{const title=$("#newCustomSubject")?.value.trim(),n=Number(b.dataset.sem);if(!title){A.toast("Informe o nome da disciplina.");return}S.customSubjects[n]=S.customSubjects[n]||[];S.customSubjects[n].push({id:"p-"+Date.now(),title});A.save();A.render(true);A.toast("Disciplina adicionada ao semestre.")});
 A.onAction("deleteCustomSubject",b=>{const n=Number(b.dataset.sem);S.customSubjects[n]=(S.customSubjects[n]||[]).filter(x=>x.id!==b.dataset.id);A.save();A.render(true)});
@@ -143,7 +143,7 @@ A.onAction("addSemTask",b=>{const title=$("#newSemTitle")?.value.trim(),date=$("
 A.onAction("deleteSemTask",b=>{S.tasks=S.tasks.filter(x=>x.id!==b.dataset.id);A.save();A.render(true)});
 A.onAction("calendarNext",()=>{calendarOffset++;A.render(true)});
 A.onAction("calendarPrev",()=>{calendarOffset--;A.render(true)});
-document.addEventListener("input",e=>{if(e.target.dataset.subject&&e.target.dataset.field){const [n,id]=e.target.dataset.subject.split("/"),d=A.discipline(n,id);if(!d)return;getSubject(A.sem(n),d)[e.target.dataset.field]=e.target.value;A.save()}});
+document.addEventListener("input",e=>{if(e.target.dataset.subject&&e.target.dataset.field){const [n,id]=e.target.dataset.subject.split("/"),d=A.discipline(n,id)||(S.customSubjects?.[n]||[]).find(x=>x.id===id);if(!d)return;getSubject(A.sem(n),d)[e.target.dataset.field]=e.target.value;A.save()}});
 document.addEventListener("change",e=>{
 if(e.target.id==="semesterSelect"){location.hash="#semestre/"+e.target.value;return}
 if(e.target.dataset.semTaskStatus){const t=S.tasks.find(x=>x.id===e.target.dataset.semTaskStatus);if(t){t.status=e.target.value;A.save();A.render(true)}}
