@@ -66,4 +66,4 @@ Em 8 de outubro de 2026 foram executadas validações de sintaxe e **390 testes 
 
 ## Publicação
 
-Os arquivos estão publicados no repositório GitHub na branch `main`; esta entrega não inclui configuração de domínio, hospedagem Vercel ou autenticação.
+Os arquivos estão publicados no repositório GitHub na branch `main`. O repositório informa o endereço `https://terapia-ocupacional-caderno.vercel.app`, mas a disponibilidade e a atualização efetiva dessa hospedagem **não foram verificadas nesta entrega**. Não há autenticação ou armazenamento remoto implementados.
