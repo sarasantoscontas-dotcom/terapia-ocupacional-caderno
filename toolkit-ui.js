@@ -69,7 +69,7 @@ else if(action==="removeTime"){x.timeline.splice(i,1)}
 else if(action==="print"){window.print();return}
 else if(action==="copy"){
  const data=[x.title,"Objetivo: "+x.objective,"Contexto: "+x.context,"Base: "+x.evidence,"Análise: "+x.reflection,"Decisões: "+x.next,x.notes].join("\n\n");
- navigator.clipboard?.writeText(data).then(()=>A.toast("Registro copiado.")).catch(()=>A.toast("Copie o registro manualmente."));return
+ if(navigator.clipboard?.writeText){navigator.clipboard.writeText(data).then(()=>A.toast("Registro copiado.")).catch(()=>A.toast("Copie o registro manualmente."))}else{A.toast("A cópia automática não está disponível. Selecione o texto para copiar.")}return
 }
 else if(action==="export"){
  const blob=new Blob([JSON.stringify({toolId:id,exportedAt:new Date().toISOString(),content:x},null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="caderno-to-"+id+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);return;
