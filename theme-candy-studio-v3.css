@@ -166,7 +166,6 @@ body:not(.login-locked) .top-button:hover{
 .module-grid>.module-card .module-body p{color:#55637c;font-size:11px}
 .module-grid>.module-card .module-body footer{border-top:1px dashed var(--accent-border,#dfd1fa);padding-top:13px;color:var(--accent-deep,#5e4a94);font-weight:800}
 /* Módulos principais: cabeçalhos, barra lateral e navegação com cor */
-.workspace{--accent:var(--accent,#7859dc)}
 .workspace .sidebar{
  border:1.5px solid var(--accent-border,#d8cef4);
  background:
