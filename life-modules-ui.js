@@ -51,7 +51,7 @@ const card=(m)=>'<a class="to-card life-card '+journeyTheme(m.category)+'" href=
 function catalog(embedded=false){
 const blocks=groups.map(g=>{const members=list.filter(m=>m.category===g.name);return '<section class="life-category '+journeyTheme(g.name)+'" data-life-category="'+E(g.name.toLocaleLowerCase("pt-BR"))+'"><header class="section-head"><div><span>CADERNO DE TERAPIA OCUPACIONAL</span><h2>'+E(g.name)+'</h2></div><p>Ferramentas específicas desta área</p></header>'+grid(members.map(card))+'</section>'}).join("");
 return (embedded?'<section class="life-catalog-embed">':'<section class="page life-catalog">')+'<div class="to-flex" style="margin-bottom:18px"><div><span class="handwritten">minha jornada acadêmica e profissional</span><h2>Outros ambientes do Caderno</h2><p>Espaços de estudo, estágio, pesquisa, pós-graduação, carreira e projetos sociais organizados por área. Cada ambiente possui registros e visualizações próprias.</p></div>'+(embedded?'<a class="to-btn primary" href="#explorar">Ver biblioteca completa →</a>':'<a class="to-btn" href="#home">← Início</a>')+'</div>'+
-'<div class="to-toolbar"><input id="lifeSearch" class="to-filter to-search" placeholder="Buscar estágio, pesquisa, doutorado, concurso..." aria-label="Buscar ambientes"></div><div class="life-category-list">'+blocks+'</div></section>';
+'<div class="to-toolbar"><input id="lifeSearch" class="to-filter to-search" placeholder="Buscar estágio, pesquisa, profissão, trabalho, TCC ou carreira..." aria-label="Buscar ambientes"></div><div class="life-category-list">'+blocks+'</div>'+(window.TO_NEXT_MODULES?window.TO_NEXT_MODULES.catalogSections():"")+'</section>';
 }
 function homeCatalog(){return catalog(true)}
 function listPage(){A.crumb(["Caderno","Outros Ambientes"]);A.main(catalog(false))}
@@ -148,7 +148,7 @@ if(dataset.lifeStage){const row=S.lifeModules[dataset.lifeStage]?.milestones[Num
 if(dataset.lifeReading){const row=S.lifeModules[dataset.lifeReading]?.readings[Number(dataset.index)];if(row){row[dataset.key]=e.target.value;A.save()}return}
 if(dataset.lifeDaytime){const row=S.lifeModules[dataset.lifeDaytime]?.days[Number(dataset.index)];if(row){row.time=e.target.value;A.save()}return}
 if(dataset.lifeCheckname){const row=S.lifeModules[dataset.lifeCheckname]?.checks[Number(dataset.index)];if(row){row.title=e.target.value;A.save()}return}
-if(e.target.id==="lifeSearch"){const q=e.target.value.trim().toLocaleLowerCase("pt-BR");document.querySelectorAll(".life-card").forEach(card=>{const match=card.textContent.toLocaleLowerCase("pt-BR").includes(q);card.hidden=!match});document.querySelectorAll(".life-category").forEach(c=>{c.hidden=[...c.querySelectorAll(".life-card")].every(x=>x.hidden)});}
+if(e.target.id==="lifeSearch"){const q=e.target.value.trim().toLocaleLowerCase("pt-BR");document.querySelectorAll(".life-card").forEach(card=>{const match=card.textContent.toLocaleLowerCase("pt-BR").includes(q);card.hidden=!match});document.querySelectorAll(".life-category").forEach(c=>{c.hidden=[...c.querySelectorAll(".life-card")].every(x=>x.hidden)});document.querySelectorAll(".new40-card").forEach(card=>{card.hidden=!card.textContent.toLocaleLowerCase("pt-BR").includes(q)});document.querySelectorAll(".new40-category").forEach(c=>{c.hidden=[...c.querySelectorAll(".new40-card")].every(x=>x.hidden)});}
 });
 document.addEventListener("change",e=>{
 const d=e.target.dataset;
