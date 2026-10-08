@@ -174,3 +174,27 @@ Os registros são guardados em **localStorage**, sem contas, sincronização rem
 ### Validação da ampliação
 
 Teste de sintaxe e renderização simulada em todos os módulos com seus oito modos de visualização, mais as páginas principais: **504 casos executados sem falhas**, incluindo a ausência de totalizadores na biblioteca inicial de Resumos e a abertura de todas as categorias TCC (7 grupos verificados na interface). Os testes simulados não substituem testes completos em navegadores reais, dispositivos móveis, acessibilidade e uso prolongado.
+
+
+## Nova identidade visual — cores vibrantes (08/10/2026)
+
+A camada de personalização `theme-vibrant.css` é carregada **depois** de `styles.css` para manter a arquitetura anterior e concentrar as mudanças de design num único arquivo de fácil manutenção.
+
+### Temas por módulo principal
+
+- **Resumos:** índigo e azul luminoso.
+- **Flashcards:** violeta e magenta.
+- **Bibliografia:** azul-petróleo e turquesa.
+- **TCC:** rosa vibrante e coral.
+- **Pesquisa Acadêmica:** azul-cobalto e ciano.
+- **Controle de Semestre:** verde-esmeralda e verde fresco.
+
+### Temas dos ambientes adicionais
+
+A categoria de cada ambiente determina a cor por meio de `theme-journey-1` até `theme-journey-9`. A paleta abrange graduação (índigo), prática ocupacional (coral), estágio (azul), pesquisa (roxo), especialização (turquesa), mestrado/doutorado (magenta), concursos (laranja), carreira (azul intenso) e projetos comunitários (verde).
+
+Cores e gradientes agora aparecem em **capas, cartões, cabeçalhos, páginas internas, links de navegação ativos, botões de ação, etiquetas, barras de progresso, quadros Kanban e linhas do tempo**, preservando fundo claro e texto escuro nos formulários e na leitura extensiva.
+
+A associação de temas é feita em `app.js` para os módulos-base e em `life-modules-ui.js` para os ambientes por categoria. A atualização **não altera dados locais, conteúdo acadêmico, funcionalidades ou estrutura de rotas**.
+
+**Verificação estrutural da personalização:** renderização simulada sem erros nas seis páginas-base e nos 54 ambientes adicionais, conferência de todas as classes cromáticas e importação correta da nova folha de estilos. Ainda é recomendada a inspeção visual em desktop/celular e em navegador real após a publicação.
