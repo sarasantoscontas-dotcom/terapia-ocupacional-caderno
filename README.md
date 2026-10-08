@@ -249,3 +249,44 @@ A navegação lateral de cada ambiente continua isolada e não lista outros mód
 ### Validação estrutural da V2
 
 Conferidos **54 ambientes**, individualmente, com renderização bem-sucedida, conteúdo específico e sem links para módulos irmãos dentro da sua página. O catálogo emite selos decorativos nos 54 cartões; as nove texturas estão presentes; regras CSS estão equilibradas sintaticamente. Inspeção real em diferentes navegadores/dispositivos e sincronização com hospedagem externa não foram verificadas.
+
+## Expansão de 40 laboratórios acadêmicos e profissionais — 08/10/2026
+
+Esta etapa **não remove ou reescreve os resumos, flashcards, seis módulos principais nem os 54 ambientes anteriores**. Acrescenta arquivos novos:
+- `next40-data.js` — 40 roteiros únicos, específicos de Terapia Ocupacional, com situações acadêmicas fictícias, objetivos, cuidados, referências a verificar, quatro campos autorais preenchidos, cinco etapas individuais e quatro dimensões próprias de análise por módulo.
+- `next40-ui.js` — rotas `#novo/<ID>`, páginas e estado isolados `state.next40[ID]`, editores, painel, Kanban, matriz, cronograma, cartões de anotação, checklists, acompanhamento de progresso, exportação JSON individual, impressão, busca e catálogo.
+- `theme-next40.css` — oito novos sistemas cromáticos e texturizados, com cartões diferentes, adesivos, bordas editoriais, sombras, papeis, padrões, modos móveis, impressão e preferência por movimento reduzido.
+
+### As 8 áreas adicionadas
+
+**1. Vida universitária, autonomia e bem-estar**: Orçamento da Vida Universitária; Mapa de Rotinas e Energia; Gestão de Bolsas e Auxílios; Laboratório de Competências Digitais; Transição entre Ciclos Acadêmicos.
+
+**2. Pesquisa aplicada, TCC e produção científica**: Histórico de Orientações e Versões do TCC; Dicionário de Variáveis da Pesquisa; Roteiros de Entrevistas e Grupos Focais; Oficina de Qualidade do Manuscrito; Inventário de Instrumentos de Pesquisa.
+
+**3. Início da atuação profissional**: Registro e Documentação Profissional; Plano dos Primeiros 90 Dias; Comparador de Vínculos de Trabalho; Integração à Equipe Multiprofissional; Portfólio de Competências Profissionais.
+
+**4. Rotinas de trabalho e intervenção**: Agenda Profissional sem Dados Sensíveis; Planejador de Encontros Ocupacionais; Banco de Graduação de Atividades; Estúdio de Registros Profissionais; Acompanhamento de Continuidade do Cuidado.
+
+**5. Gestão e sustentabilidade de serviços**: Laboratório de Implantação de Serviço; Simulador de Custos e Precificação; Inventário de Materiais e Estoque; Mapa de Segurança e Contingências; Facilitador de Reuniões do Serviço.
+
+**6. Contextos e programas de intervenção**: Projeto de Grupos Ocupacionais; Preparação de Transição Hospital–Domicílio; Oficina de Orientação a Redes de Apoio; Planejamento de Retorno à Educação e Trabalho; Curadoria de Cultura, Lazer e Território.
+
+**7. Tecnologia, sigilo e qualidade**: Painel de Resultados Ocupacionais; Oficina de Acessibilidade Digital Profissional; Proteção de Dados e Sigilo Profissional; Cartografia de Encaminhamentos e Rede; Pesquisa de Experiência do Serviço.
+
+**8. Desenvolvimento e sustentabilidade da carreira**: Supervisão de Profissionais Iniciantes; Agenda de Desenvolvimento Profissional; Estúdio de Educação em Saúde Acessível; Projetos Profissionais e Captação de Recursos; Gestão de Carga, Limites e Bem-Estar no Trabalho.
+
+**Ferramentas específicas adicionais:** Orçamento da Vida Universitária tem simulador de entradas/despesas e saldo hipotético; Simulador de Custos e Precificação tem custos fixos, indiretos, variáveis e custo unitário (não recomenda preço); Inventário de Materiais e Estoque calcula alertas de reposição com quantidades e limites editáveis. Cada ferramenta persiste exclusivamente no respectivo módulo.
+
+A navegação dos novos módulos mostra apenas o módulo em uso, três atalhos internos e retorno à biblioteca. Os dados dos demais módulos não aparecem nem são compartilhados, inclusive entre módulos da mesma categoria. As categorias entram nas bibliotecas `#home` e `#explorar` e também podem ser abertas na rota `#novos`.
+
+A infraestrutura é `HTML/CSS/JavaScript` puro e salva no navegador via o mecanismo de `localStorage` já existente. **Não há conta, sincronização ou backup automático remoto**. Em ambientes profissionais, não devem ser registrados prontuários nem dados pessoais identificáveis de usuários/pacientes. Os exemplos são fictícios; não substituem procedimentos institucionais, critérios éticos, registro profissional ou assessoria jurídica/contábil.
+
+**Fontes orientadoras a conferir conforme atividade e atualização:** COFFITO, Código de Ética e Deontologia da Terapia Ocupacional (Resolução COFFITO 425/2013): https://www.coffito.gov.br/nsite/?page_id=3386 ; conselho regional CREFITO responsável; ANPD/LGPD para tratamento de dados; referenciais acadêmicos e institucionais efetivamente consultados.
+
+### Testes da expansão
+
+- 40 novas páginas × cinco visualizações = **200 renderizações simuladas**, todas sem exceção.
+- Registros editáveis independentes entre dois módulos testados, adição de etapas funcional; os 40 cartões aparecem no catálogo.
+- Três ferramentas especiais (simulador universitário, simulador de custos e inventário) aparecem apenas em seus módulos.
+- Os 54 ambientes antigos continuam renderizando sem mistura de links entre os ambientes irmãos; biblioteca conjunta apresenta **54 cartões antigos + 40 novos**.
+- Pendente: validação visual real em desktop e celular; garantia e tempo de publicação pelo host externo não foram verificados.
