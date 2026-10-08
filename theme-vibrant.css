@@ -149,7 +149,7 @@ input:focus-visible,select:focus-visible,summary:focus-visible{
 }
 .module-grid>.module-card .module-cover span{
  color:#fff;font-size:9px;font-weight:800;letter-spacing:.13em;
- background:rgba(16,20,63,.20);
+ background:rgba(15,22,61,.66);
  border:1px solid rgba(255,255,255,.23);
  padding:8px 11px;border-radius:50px;
  position:relative;z-index:1;
@@ -219,14 +219,14 @@ input:focus-visible,select:focus-visible,summary:focus-visible{
 }
 .workspace .module-hero p{font-size:12px;color:#54637c;max-width:780px}
 .workspace .to-btn.primary{
- background:linear-gradient(115deg,var(--accent-start,#6751ec),var(--accent-end,#397fed));
+ background:linear-gradient(115deg,var(--accent-deep,#4c35bc),color-mix(in srgb,var(--accent,#6751ec) 50%,var(--accent-deep,#4c35bc)));
  color:#fff;border-color:transparent;font-weight:750;
  box-shadow:0 7px 16px color-mix(in srgb,var(--accent) 19%,transparent);
 }
 .workspace .to-btn.primary:hover{filter:brightness(.94);transform:translateY(-1px)}
 .workspace .to-tabs button.active{
- background:var(--accent,#6554e5);
- color:#fff;border-color:var(--accent,#6554e5);
+ background:var(--accent-deep,#4a319e);
+ color:#fff;border-color:var(--accent-deep,#4a319e);
  box-shadow:0 4px 13px color-mix(in srgb,var(--accent) 19%,transparent);
  font-weight:750;
 }
@@ -313,7 +313,7 @@ input:focus-visible,select:focus-visible,summary:focus-visible{
 .life-card h3{font-family:"DM Sans",sans-serif;font-weight:800;letter-spacing:-.02em;color:#202b48;font-size:16px}
 .life-card p{color:#596781;font-size:11px;line-height:1.7}
 .life-card footer{border-top-color:var(--accent-border)!important;color:var(--accent-deep)!important;font-weight:800}
-.life-card footer b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:16px}
+.life-card footer b{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--accent-deep);color:#fff;font-size:16px}
 .life-catalog>.to-flex h2,
 .life-catalog-embed>.to-flex h2{color:#242a57}
 .life-catalog>.to-toolbar,
